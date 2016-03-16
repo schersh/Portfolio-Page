@@ -1,0 +1,42 @@
+/* =============================================================================
+//  Cover component
+// -> a main heading for content
+// ========================================================================== */
+
+/*doc
+---
+title: Cover
+name: cover
+category: Molecules
+---
+
+*/
+
+// @import "../core/all";
+
+/* Base
+// -------------------------------------------------------------------------- */
+
+.cover {
+    display: block;
+    // padding: $l-margin--wide;
+    height: 500px;
+    height: 60vh;
+    background-size: cover;
+    text-align: center;
+
+    // @include media(">small") { padding-right: 40%; }
+    // @include media(">medium") { padding-right: 60%; }
+
+    @include yep(flexbox) {
+        @include display(flex);
+        @include align-items(center);
+    }
+}
+
+/* Subcomponents
+// -------------------------------------------------------------------------- */
+
+.cover-title {
+
+}

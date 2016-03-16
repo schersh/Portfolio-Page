@@ -1,0 +1,103 @@
+---
+layout: default
+---
+<section class="cover c-theme-wash">
+    <div class="l-wrapper l-wrapper--wide">
+        <h1 class="h-alpha">Sarah Hersh</h1>
+        <p class="h-cappa title-sub"><strong>Web Developer | Writer | Educator</strong></p>
+    </div>
+</section>
+<section class="panel c-theme-reverse no-border" id="Introduction">
+    <div class="l-wrapper l-centered">
+        <p class="t-lead">An educator turned web developer, I'm passionate about the arts and social impact. My goal on every project is to make systems better for the people who use them.</p>
+        <a class="button button--text l-margin-top l-padding-top border-tick border-tick--top" href="#my-background">
+            Want to know more?<br>
+            <svg class="icon icon--border l-margin-top l-margin-top--narrow" title="arrow" role="presentation">
+                <use xlink:href="#arrow-down" />
+            </use>
+        </a>
+    </div>
+</section>
+<!-- include nav bar with jumplinks, or not neccessary? -->
+<!-- content sections -->
+<!-- ordered by weight in post front matter -->
+{% assign sortedPosts = site.posts | sort: 'weight' %}
+{% for post in sortedPosts %}
+{% if post.title != "Introduction" %}
+<section class="panel" id="{{ post.title | downcase | replace: ' ', '-' }}">
+    <div class="l-wrapper">
+        <h1 class="h-beta title">{{ post.title }}</h1>
+        {{ post.content | markdownify }}
+        <!-- logic to list document links from frontmatter -->
+        {% if post.assets %}
+          {% for asset in post.assets %}
+            {{#assets}}
+              <div class="l-centered l-margin--wide">
+                <div class="button-box">
+                  <span class="button-label">
+                    <svg class="icon icon--margin-left" role="presentation">
+                        <use xlink:href="#file-pdf"/>
+                    </svg>
+                    {{ asset.name }}
+                  </span>
+                  <a class="button button--small button--secondary" href="{{ asset.link }}">
+                     Download
+                    <svg class="icon icon--margin-left" role="presentation">
+                        <use xlink:href="#download"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            {{/assets}}
+          {% endfor %}
+        {% endif %}
+        <!-- logic to list team members from frontmatter -->
+        {% if post.projects %}
+          {% for project in post.projects %}
+            {{#projects}}
+              <ul class="gallery l-wrapper panel">
+                <li class="gallery-item"><a href="{{ project.site }}">{{project.name}}: </a><dfn>{{project.role}}</dfn></li>
+                <li class="gallery-item"><img class="img-tile" src="{{project.asset}}"></li>
+              </ul>
+            {{/projects}}
+          {% endfor %}
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+{% endfor %}
+
+<!-- mailing list form here? use some logic to see if there's a mailing list in _config? -->
+<section class="panel c-theme-reverse">
+  <div class="l-wrapper">
+    <h1 class="h-beta title">Want to work together? Drop me a line.</h1>
+    <form action="//formspree.io/schersh@gmail.com"
+      method="POST">
+    <input type="text" placeholder="Name" name="name">
+    <input type="email" placeholder="Email" name="_replyto">
+    <input type="text" placeholder="Organization" name="name">
+    <input type="submit" value="Send" class="l-margin-top">
+</form>
+  </div>
+</section>
+<!-- team members grid -->
+{% if site.data.members %}
+<section class="panel c-well">
+    <div class="l-wrapper">
+      <h1 class="h-beta title">Who are we, anyway?<h1>
+      <span class="h-cappa">Meet some of the people involved in this project:</span class="h-cappa">
+        <ul class="gallery">
+        {% for member in site.data.members %}
+            <li class="gallery-item">
+                <a href="{{ member.website }}">
+                    {{ member.name }}
+                </a><br>
+                <a href="mailto:{{ member.email }}">
+                    {{ member.email }}
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endif %}

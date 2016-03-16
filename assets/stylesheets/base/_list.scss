@@ -1,0 +1,90 @@
+/* =============================================================================
+//  Global list styles
+// ========================================================================== */
+
+// @import "../core/libs";
+// @import "../core/breakpoints";
+
+/* Globals
+// -------------------------------------------------------------------------- */
+
+li {
+    @include font-scale(2);
+
+    strong {
+        font-weight: bold;
+    }
+}
+
+li {
+    margin-bottom: 0.5em;
+}
+
+ol, ul {
+    margin-left: 1.5em; /* bump to the right a little @ mobile sizes so the numbers/bullets don't run off */
+    padding-left: 0;
+
+    @include media(">small") {
+        margin-left: 0;
+    }
+}
+
+/* Utilities
+// -------------------------------------------------------------------------- */
+
+// --- config & mixins ---------------------------------------------------------
+
+@mixin list-undecorated {
+    margin-left: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+@mixin list-inline($selector: '.list-inline-item') {
+    #{$selector}, li, dt, dd {
+        display: inline-block;
+        margin-right: 1em;
+
+        &:last-child { margin-right: 0; }
+    }
+}
+
+// --- utility classes ---------------------------------------------------------
+
+.list-undecorated {
+    @include list-undecorated;
+}
+
+.list-inline {
+    @include list-undecorated;
+    @include list-inline;
+
+    // make inline only above a certain breakpoint
+    @each $breakpoint, $size in $breakpoints {
+        &\@#{$breakpoint} {
+            .list-inline-item, li, dt, dd {
+                display: block;
+                margin-right: 0;
+            }
+
+            @include media(">#{$breakpoint}") { @include list-inline; }
+        }
+    }
+}
+
+// add borders to each list item
+.list-inline--has-borders {
+    .list-inline-item {
+        @include border(right);
+        padding-right: 1em;
+
+        &:last-child {
+            padding-right: 0;
+            border: none;
+        }
+    }
+}
+
+.list-inline--vertically_centered {
+    .list-inline-item { vertical-align: middle; }
+}

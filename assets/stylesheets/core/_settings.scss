@@ -1,0 +1,32 @@
+// ==========================================================================
+//  Global settings
+// ==========================================================================
+
+/*doc
+---
+title: Global Variables
+name: settings
+category: Core
+---
+
+We keep global settings to a minimum, to keep variables closely tied to the relevant modules/libraries.
+
+Right now, the only globals we need are a few file path helpers: `$asset-path-images`, `$asset-path-icons`, and `$asset-path-fonts`.
+
+*/
+
+// Asset paths
+// -----------------------------------------------------------------------------
+$asset-path: "/assets";
+$asset-path-images: "#{$asset-path}/images";
+$asset-path-icons: "#{$asset-path-images}/icons";
+$asset-path-fonts: "#{$asset-path}/fonts";
+
+// z-indexes
+// -----------------------------------------------------------------------------
+
+$z--low    : 0;
+$z--middle : 1;
+$z--high   : 2;
+
+$z--admin  : 3; // put admin/drupal navs above all the things

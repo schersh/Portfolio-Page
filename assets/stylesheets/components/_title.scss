@@ -1,0 +1,57 @@
+/* =============================================================================
+//  Title component
+// -> a main heading for content
+// ========================================================================== */
+
+/*doc
+---
+title: Title
+name: main_nav
+category: Atoms
+---
+
+*/
+
+@import "../core/all";
+
+/* Base
+// -------------------------------------------------------------------------- */
+
+// a primary heading for content
+.title {
+    @extend .border-tick;
+    @extend .border-tick--bright;
+    @include font-display('bold');
+    // @include color('text' 'primary');
+    display: block;
+    // margin: 0.5em 0;
+    padding-bottom: 0.8em;
+    margin: 0 0 1.5em;
+    text-align: center;
+    letter-spacing: -0.02em;
+}
+
+/* Subcomponents
+// -------------------------------------------------------------------------- */
+
+// a subtitle, or secondary heading
+.title-sub {
+    @include font-body;
+    @include color('text' 'secondary');
+    display: block;
+    margin: 0.2em 0.5em 0;
+    line-height: 1.6;
+
+    strong {
+        @include font-body('bold');
+        @include color('text' 'secondary');
+    }
+}
+
+
+// make a heading a secondary label, a "meta header"
+.title-slug {
+    @include font-display(bold);
+    text-transform: uppercase;
+    color: lighten(theme('text' 'primary'), 10);
+}

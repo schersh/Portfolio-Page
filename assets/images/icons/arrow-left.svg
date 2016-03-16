@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="10px" height="10px" viewBox="0 0 10 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.6 (26304) - http://www.bohemiancoding.com/sketch -->
+    <title>arrow-left</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="-assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons" transform="translate(-86.000000, -41.000000)" fill="#11A9BE">
+            <path d="M93.6970209,45.5000043 L89.6655176,41.8716514 C89.4602626,41.6869219 89.4436234,41.3707769 89.6283529,41.1655219 C89.8130824,40.9602669 90.1292274,40.9436277 90.3344824,41.1283572 L95.3344824,45.6283572 L95.7474236,46.0000043 L95.3344824,46.3716514 L90.3344824,50.8716514 C90.1292274,51.0563809 89.8130824,51.0397417 89.6283529,50.8344867 C89.4436234,50.6292317 89.4602626,50.3130867 89.6655176,50.1283572 L93.6970209,46.5000043 L86.5,46.5000043 C86.2238576,46.5000043 86,46.2761467 86,46.0000043 C86,45.7238619 86.2238576,45.5000043 86.5,45.5000043 L93.6970209,45.5000043 Z" id="arrow-left" transform="translate(90.873712, 46.000004) scale(-1, 1) translate(-90.873712, -46.000004) "></path>
+        </g>
+    </g>
+</svg>

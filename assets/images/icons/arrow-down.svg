@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="11px" height="10px" viewBox="0 0 11 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.6 (26304) - http://www.bohemiancoding.com/sketch -->
+    <title>arrow-down</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="-assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons" transform="translate(-187.000000, -40.000000)" fill="#11A9BE">
+            <path d="M195.07589,44.6262968 L191.044387,40.9979439 C190.839132,40.8132144 190.822492,40.4970695 191.007222,40.2918145 C191.191951,40.0865594 191.508096,40.0699202 191.713351,40.2546497 L196.713351,44.7546497 L197.126293,45.1262968 L196.713351,45.4979439 L191.713351,49.9979439 C191.508096,50.1826734 191.191951,50.1660342 191.007222,49.9607792 C190.822492,49.7555242 190.839132,49.4393793 191.044387,49.2546497 L195.07589,45.6262968 L187.878869,45.6262968 C187.602727,45.6262968 187.378869,45.4024392 187.378869,45.1262968 C187.378869,44.8501544 187.602727,44.6262968 187.878869,44.6262968 L195.07589,44.6262968 Z" id="arrow-down" transform="translate(192.252581, 45.126297) scale(1, -1) rotate(-90.000000) translate(-192.252581, -45.126297) "></path>
+        </g>
+    </g>
+</svg>

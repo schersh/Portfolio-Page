@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.6 (26304) - http://www.bohemiancoding.com/sketch -->
+    <title>code</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="-assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons" transform="translate(-387.000000, -38.000000)" fill="#11A9BE">
+            <path d="M387,38 L387,56 L405,56 L405,38 L387,38 L387,38 Z M395.25,45.64925 L392.52,47 L395.25,48.347 L395.25,50 L390.75,47.79875 L390.75,46.2005 L395.25,44 L395.25,45.64925 L395.25,45.64925 Z M401.25,47.79875 L396.75,50 L396.75,48.347 L399.48,47 L396.75,45.64925 L396.75,44 L401.25,46.20125 L401.25,47.79875 L401.25,47.79875 Z" id="code"></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,183 @@
+/* =============================================================================
+// Border settings & helpers
+// ===========================================================================*/
+
+/*doc
+---
+title: Border settings & helpers
+name: borders
+category: core
+---
+
+Some mixins that allow us to keep our border styles DRY and control them from one place. Use these mixins and placeholders instead of writing your own CSS.
+
+```
+.your-selector {
+    // add the default border radius
+    @extend %base-radius;
+
+    // add a thin border on all sides
+    @include border(all, thin);
+
+    // add a thick border on the top and left sides with the highlight color
+    @include border(top left, thick, theme(highlight));
+}
+```
+
+There are also utility classes that allow you to quickly add a border to a container:
+
+```html_example
+<div class="border">
+    <p>I have borders on all sides!</p>
+</div>
+
+<div class="border border-round">
+    <p>I have rounded corners!</p>
+</div>
+
+<div class="border-top">
+    <p>I have borders on just the top!</p>
+</div>
+
+<div class="border-bottom border-right">
+    <p>I have borders on a couple sides. You can combine border classes to cover as many sides as you like.</p>
+</div>
+
+<div class="no-border">
+    <p>I have no borders! Even if I normally would.</p>
+</div>
+```
+
+*/
+
+@import "libs";
+@import "color";
+@import "../layout/spacing";
+
+// Rounded corners
+// -----------------------------------------------------------------------------
+
+$base-radius: 3px !default;
+
+@mixin base-radius {
+  border-radius: $base-radius;
+}
+
+// Border width & style
+// -----------------------------------------------------------------------------
+
+$border-w--default: 'thin' !default;
+$border-style: solid !default;
+$border-sides: top right bottom left;
+
+$border-tick-spacing: 0.4em;
+
+$border-widths: (
+    'thin'  : 1px,
+    'mid'   : 3px,
+    'thick' : 6px,
+);
+
+// get function for border widths
+@function border-w($w: $border-w--default) {
+    @if (type-of($w) == "number") {
+        @return #{$w};
+    } @else {
+        @return map-get($border-widths, $w);
+    }
+}
+
+// getter function to set border color with either theme value or hex
+@function border-get-color($c) {
+    // if $c is not a hex value
+    @if (type-of($c) != "color") {
+        // if so, get the theme value for it
+        @return theme('border', $c);
+        @debug theme('border', 'default');
+    } @else {
+        // otherwise, just return the hex
+        @return $c;
+    }
+}
+
+// make a standard border/hairline that works with the parent color theme
+@mixin border($sides: all, $w: $border-w--default, $color: 'default', $style: $border-style) {
+    @if ($sides == all) {
+        border: #{border-w($w)} #{$style} #{border-get-color($color)};
+    } @else {
+        @each $side in $sides {
+            border-#{$side}: #{border-w($w)} #{$style} #{border-get-color($color)};
+        }
+    }
+
+    // if no color is specified, set up border-color for each theme
+    @if ($color == 'default') {
+        @include color('border', 'border-color');
+    }
+}
+
+// Utilities
+// -----------------------------------------------------------------------------
+
+// .border, .border@[screen]
+@include breakpointify(".border", true) {
+    @include border;
+}
+
+// .border-[side], .border-[side]@[screen]
+@each $side in $border-sides {
+    @include breakpointify(".border-#{$side}", true) {
+        @include border($side);
+    }
+}
+
+// .no-border, .no-border@[screen]
+@include breakpointify(".no-border", true) { border: none !important; }
+
+// .no-border-[side], .no-border-[side]@[screen]
+@each $side in $border-sides {
+    @include breakpointify(".no-border-#{$side}", true) { border-#{$side}: none !important; }
+}
+
+// rounded borders
+.border-round { border-radius: $base-radius; }
+.border-circle { border-radius: 50%; }
+
+// a 'tick' is a short, thick border just below or above an element
+// -> frequently used on headers
+.border-tick {
+    &:after, &::after {
+        $w: 2em;
+        @include color('border', 'background-color');
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        margin-left: -($w/2);
+        width: $w;
+        height: border-w(mid);
+    }
+}
+
+.border-tick--top {
+    &:after, &::after {
+        top: 0;
+        bottom: auto;
+    }
+}
+
+.border-tick--bright {
+    &:after, &::after {
+        @include color('highlight', 'background-color');
+    }
+}
+
+/* --- Modifiers ------------------------------------------------------------ */
+
+// make a border thicker
+.border--mid { border-width: border-w('mid'); }
+.border--thick { border-width: border-w('thick'); }
+
+// make borders 'bright', ie stand out more. default is very subtle
+.border--bright { @include color('accent', 'border-color', $important: true); }

@@ -1,0 +1,62 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Sarah Hersh | Web Developer</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="/assets/stylesheets/vendor/normalize.css">
+        <link rel="stylesheet" href="/assets/stylesheets/main.css">
+        <script src="assets/javascripts/critical.bundle.js"></script>
+    </head>
+
+    <body>
+        {% include spritemap.html %}
+        <header class="main_header c-theme-wash">
+            <ul class="main_header-item main_header-item--left list-inline list-inline--vertically_centered list-inline--has-borders">
+                <li class="list-inline-item l-no-margin-bottom">
+                    <a href="https://www.linkedin.com/pub/sarah-hersh/6a/627/b23">
+                        <picture>
+                            <img src="/assets/images/linkedin.png" alt="Linkedin" />
+                        </picture>
+                    </a>
+                </li>
+                <li class="list-inline-item l-no-margin-bottom">
+                  <a href="https://github.com/schersh">
+                      <picture>
+                          <img src="/assets/images/GitHub.png" alt="GitHub" />
+                      </picture>
+                  </a>
+                </li>
+            </ul>
+            <a class="show@xsmall main_header-item main_header-item--right button button--text" href="mailto:schersh@gmail.com">Contact</a>
+        </header>
+
+        {{ content }}
+
+        <footer class="main_footer c-theme-wash">
+          <!-- <a href="https://www.linkedin.com/pub/sarah-hersh/6a/627/b23" class="footer-item ">
+            <picture>
+              <img src="/assets/images/linkedin.png" alt="Linkedin" />
+            </picture>
+          </a>
+          <a href="https://github.com/schersh">
+              <picture>
+                  <img src="/assets/images/GitHub.png" alt="GitHub" />
+              </picture>
+          </a> -->
+        <!-- </div> -->
+          <small class="footer-item footer-item--right">&copy; 2016.</small>
+        </footer>
+
+        <script src="assets/javascripts/bundle.js"></script>
+
+  </body>
+
+</html>

@@ -1,0 +1,32 @@
+/* =============================================================================
+// Global positioning utilities
+// -> place an element relative to its parent
+// ========================================================================== */
+
+/* Utilities
+// -------------------------------------------------------------------------- */
+
+// Center an element
+.l-centered { text-align: center; }
+
+// Float an element
+.l-float-right { float: right; }
+.l-float-left { float: left; }
+
+.l-position-left {
+    float: left;
+
+    @include yep(flexbox) {
+        float: none;
+        align-self: flex-start;
+    }
+}
+
+.l-position-right {
+    float: right;
+
+    @include yep(flexbox) {
+        float: none;
+        align-self: flex-end;
+    }
+}

@@ -1,0 +1,68 @@
+/* =============================================================================
+//  Main header component
+// ========================================================================== */
+
+/*doc
+---
+title: Main Header
+name: main_header
+category: Organisms
+---
+
+*/
+
+// @import "../core";
+// @import "main_nav";
+
+/* Base
+// -------------------------------------------------------------------------- */
+
+.main_header {
+    @include border(bottom);
+    display: block;
+    // @include display(flex);
+    // align-items: center;
+    vertical-align: middle;
+    position: absolute;
+    padding: 1em 0;
+    top: 0;
+    left: $l-margin--wide;
+    right: $l-margin--wide;
+    z-index: $z--high;
+    // width: 100%;
+    // padding-left: $l-margin--wide;
+    // padding-right: $l-margin--wi`de;
+
+    @include yep(flexbox) {
+        @include display(flex);
+        @include align-items(center);
+        @include justify-content(space-between);
+    }
+}
+
+/* Subcomponents
+// -------------------------------------------------------------------------- */
+
+.main_header-item {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.main_header-item--left {
+    float: left;
+
+    @include yep(flexbox) {
+        display: block;
+        flex: 1;
+    }
+}
+
+.main_header-item--right {
+    float: right;
+    margin-bottom: -1em;
+
+    @include yep(flexbox) {
+        display: block;
+    }
+}

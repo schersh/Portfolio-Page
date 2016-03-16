@@ -1,0 +1,13 @@
+# to customize for each project, update this file with the names and contact info for relevent team members. "team.html" layout will loop through all members in this data file.
+
+# - name: Jay Perry
+#   email: jay@bivee.co
+#   website: http://www.bivee.co/#team
+#
+# - name: Nicholas Kingston
+#   email: nicholas@bivee.co
+#   website: http://www.bivee.co/#team
+#
+# - name: Scott Schaffter
+#   email: scott@bivee.co
+#   website: http://www.bivee.co/#team

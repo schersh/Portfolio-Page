@@ -1,0 +1,2196 @@
+/*
+ * Bivee.co
+ *
+ * Designed, built, & written by Bivee.
+ * https://github.com/biveeco/
+ *
+ * Nice to see you here, fellow CSS nerd. Give us a shout on Github.
+ *
+ */
+/* /////////////////////////////////////////////////////////////////////////////
+// Core style helpers
+// -> global settings, helpers, and utility classes
+///////////////////////////////////////////////////////////////////////////// */
+/*! SassyLists - v2.2.0 - 2014-07-03 */
+/* ==========================================================================
+ * Helpers for converting units (rems, percent, etc.)
+ * ========================================================================== */
+/*doc
+---
+title: Global Variables
+name: settings
+category: Core
+---
+
+We keep global settings to a minimum, to keep variables closely tied to the relevant modules/libraries.
+
+Right now, the only globals we need are a few file path helpers: `$asset-path-images`, `$asset-path-icons`, and `$asset-path-fonts`.
+
+*/
+/* =============================================================================
+// Global breakpoints
+// -> uses include-media library (http://include-media.com)
+// ===========================================================================*/
+/*doc
+---
+title: Global Breakpoints
+name: breakpoints
+category: Core
+---
+
+A series of global breakpoints are used throughout the site. Note that components often use their own local breakpoints (or "tweakpoints") to handle their layout, but the overall layout is based on the globals.
+
+The breakpoints are simply labelled by size: "xsmall," "small," "medium," "large," and "xlarge."
+
+Utility classes are available for each: `.show@[SIZE]`, e.g. `.show@small` These will hide an element below a particular screen width.
+
+```html_example
+<div class="show@medium">You can only see me above "medium" screen sizes.</div>
+```
+
+To access a specific breakpoint value in Sass, use the `screen()` function, as in `max-width: screen('large');`, which will compile to `max-width: 75em;`
+
+*/
+/* Utility classes
+// -------------------------------------------------------------------------- */
+@media (max-width: 29.99em) {
+  .show\@xsmall {
+    display: none !important; } }
+
+@media (max-width: 41.99em) {
+  .show\@small {
+    display: none !important; } }
+
+@media (max-width: 61.99em) {
+  .show\@medium {
+    display: none !important; } }
+
+@media (max-width: 74.99em) {
+  .show\@large {
+    display: none !important; } }
+
+@media (max-width: 99.99em) {
+  .show\@huge {
+    display: none !important; } }
+
+/* =============================================================================
+//  Global animation styles
+// ========================================================================== */
+/*doc
+---
+title: Animation
+name: animation
+category: Core
+---
+
+The animation library sets global defaults for CSS transitions. Use it in your modules like this:
+
+```
+.your-selector {
+    @include base-transition;
+}
+```
+
+*/
+/* =============================================================================
+//  Webfonts
+// ========================================================================== */
+/*doc
+---
+title: Fonts
+name: fonts
+category: Core
+---
+
+Fonts are accessed through SASS placeholders. Just extend the appropriate one. Fonts are applied to type, globally, in _type.scss, and individual modules can set up their own font styles.
+
+Please DO NOT use your own font-family attributes in any circumstance. Always use the mixins.
+
+```
+// display fonts
+// -> headlines, buttons, labels, etc.
+
+@include font-display
+@include font-display(bold)
+
+// body fonts
+// -> paragraphs, captions, etc.
+
+@include font-body
+@include font-body(normal, italic)
+@include font-body(bold)
+```
+
+*/
+/* Globals
+// -------------------------------------------------------------------------- */
+/* ----- Aspira ------------------------------------------------------------- */
+@font-face {
+  font-family: "aspira-thin";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/assets/fonts/Aspira-Thin-webfont.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/Aspira-Thin-webfont.woff2") format("woff2"), url("/assets/fonts/Aspira-Thin-webfont.woff") format("woff"), url("/assets/fonts/Aspira-Thin-webfont.ttf") format("truetype"), url("/assets/fonts/Aspira-Thin-webfont.svg#aspira-thin") format("svg"); }
+
+@font-face {
+  font-family: "aspira-regular";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/assets/fonts/Aspira-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/Aspira-Regular-webfont.woff2") format("woff2"), url("/assets/fonts/Aspira-Regular-webfont.woff") format("woff"), url("/assets/fonts/Aspira-Regular-webfont.ttf") format("truetype"), url("/assets/fonts/Aspira-Regular-webfont.svg#aspira-regular") format("svg"); }
+
+@font-face {
+  font-family: "aspira-bold";
+  font-style: normal;
+  font-weight: bold;
+  src: url("/assets/fonts/Aspira-Demi-webfont.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/Aspira-Demi-webfont.woff2") format("woff2"), url("/assets/fonts/Aspira-Demi-webfont.woff") format("woff"), url("/assets/fonts/Aspira-Demi-webfont.ttf") format("truetype"), url("/assets/fonts/Aspira-Demi-webfont.svg#aspira-bold") format("svg"); }
+
+/* ----- Copernicus --------------------------------------------------------- */
+@font-face {
+  font-family: "copernicus-book";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/assets/fonts/Copernicus-Book.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/Copernicus-Book.woff") format("woff"); }
+
+@font-face {
+  font-family: "copernicus-italic";
+  font-style: italic;
+  font-weight: normal;
+  src: url("/assets/fonts/Copernicus-BookItalic.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/Copernicus-BookItalic.woff") format("woff"); }
+
+@font-face {
+  font-family: "copernicus-bold";
+  font-style: normal;
+  font-weight: bold;
+  src: url("/assets/fonts/Copernicus-Semibold.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/Copernicus-Semibold.woff") format("woff"); }
+
+/* Font styles
+// -> PUBLIC, use these to style type globally & in modules
+// -------------------------------------------------------------------------- */
+/* ----- Display type ------------------------------------------------------- */
+/* ----- Body type ---------------------------------------------------------- */
+/* ----- Ampersands --------------------------------------------------------- */
+/* ==========================================================================
+//  Global color styles
+// -> base colors are set here on global elements, but modules apply their own
+// -> refer to colors ONLY via the $theme maps
+// ========================================================================== */
+/*doc
+---
+title: Color
+name: color
+category: core
+---
+
+Some functions and globals to keep the color scheme DRY and easy to manage in one place. Color for the entire site is handled through structured SASS maps, assigning each color a role:
+
+```
+$theme--default: (
+    text--primary   : $blue--dark,
+    text--secondary : #706F6F,
+    text--tertiary  : darken($gray, 10),
+    bg              : #fff,
+    well            : $gray--superlight,
+    border          : $gray--light,
+    highlight       : $highlight--default,
+    accent          : $blue--dark
+);
+
+```
+You can easily access these colors by "role" with the `theme()` function, like so:
+
+```
+.your-module {
+    color: theme(highlight);
+    background-color: theme(bg);
+
+}
+```
+
+If the site has multiple color schemes (say, "default" and "reverse" themes), you can specify the theme by passing in a second parameter:
+
+```
+background-color: theme(bg, reverse);
+```
+
+The second parameter is optional, and theme() will default to the 'default' theme map.
+
+*/
+/* Themes
+// -> use on containers to apply a theme
+// -------------------------------------------------------------------------- */
+body, .c-theme-default {
+  color: #464C56;
+  background-color: #fff;
+  border-color: #d6d7dd; }
+  body ::selection, .c-theme-default ::selection {
+    background: #418FBF;
+    color: #fff;
+    text-shadow: none; }
+  body ::-moz-selection, .c-theme-default ::-moz-selection {
+    background: #418FBF;
+    color: #fff;
+    text-shadow: none; }
+
+.c-theme-reverse {
+  color: #d6d7dd;
+  background-color: #263750;
+  border-color: #476795; }
+  .c-theme-reverse ::selection {
+    background: #e4b8ba;
+    color: #fff;
+    text-shadow: none; }
+  .c-theme-reverse ::-moz-selection {
+    background: #e4b8ba;
+    color: #fff;
+    text-shadow: none; }
+
+.c-theme-wash {
+  color: #263750;
+  background-color: #e4b8ba;
+  border-color: #fff; }
+  .c-theme-wash ::selection {
+    background: #fff;
+    color: #fff;
+    text-shadow: none; }
+  .c-theme-wash ::-moz-selection {
+    background: #fff;
+    color: #fff;
+    text-shadow: none; }
+
+/* Color classes
+// -> use on individual elements to apply color treatment
+// -------------------------------------------------------------------------- */
+.c-text-primary {
+  color: #263750 ; }
+  .c-text-primary.c-theme-reverse, .c-theme-reverse .c-text-primary {
+    color: #fff ; }
+  .c-text-primary.c-theme-wash, .c-theme-wash .c-text-primary {
+    color: #fff ; }
+
+.c-text-secondary {
+  color: #464C56 ; }
+  .c-text-secondary.c-theme-reverse, .c-theme-reverse .c-text-secondary {
+    color: #d6d7dd ; }
+  .c-text-secondary.c-theme-wash, .c-theme-wash .c-text-secondary {
+    color: #263750 ; }
+
+.c-text-tertiary {
+  color: #9FA0AE ; }
+  .c-text-tertiary.c-theme-reverse, .c-theme-reverse .c-text-tertiary {
+    color: #476795 ; }
+  .c-text-tertiary.c-theme-wash, .c-theme-wash .c-text-tertiary {
+    color: #263750 ; }
+
+.c-highlight {
+  color: #418FBF ; }
+  .c-highlight.c-theme-reverse, .c-theme-reverse .c-highlight {
+    color: #e4b8ba ; }
+  .c-highlight.c-theme-wash, .c-theme-wash .c-highlight {
+    color: #fff ; }
+
+.c-highlight-bg {
+  background-color: #418FBF ; }
+  .c-highlight-bg.c-theme-reverse, .c-theme-reverse .c-highlight-bg {
+    background-color: #e4b8ba ; }
+  .c-highlight-bg.c-theme-wash, .c-theme-wash .c-highlight-bg {
+    background-color: #fff ; }
+
+.c-accent {
+  color: #418FBF ; }
+  .c-accent.c-theme-reverse, .c-theme-reverse .c-accent {
+    color: #418FBF ; }
+  .c-accent.c-theme-wash, .c-theme-wash .c-accent {
+    color: #263750 ; }
+
+.c-accent-bg {
+  background-color: #418FBF ; }
+  .c-accent-bg.c-theme-reverse, .c-theme-reverse .c-accent-bg {
+    background-color: #418FBF ; }
+  .c-accent-bg.c-theme-wash, .c-theme-wash .c-accent-bg {
+    background-color: #263750 ; }
+
+.c-well {
+  color: #f5f5f6 ; }
+  .c-well.c-theme-reverse, .c-theme-reverse .c-well {
+    color: #05070b ; }
+  .c-well.c-theme-wash, .c-theme-wash .c-well {
+    color: #e4b8ba ; }
+
+.c-well-bg {
+  background-color: #f5f5f6 ; }
+  .c-well-bg.c-theme-reverse, .c-theme-reverse .c-well-bg {
+    background-color: #05070b ; }
+  .c-well-bg.c-theme-wash, .c-theme-wash .c-well-bg {
+    background-color: #e4b8ba ; }
+
+/* =============================================================================
+// Border settings & helpers
+// ===========================================================================*/
+/*doc
+---
+title: Border settings & helpers
+name: borders
+category: core
+---
+
+Some mixins that allow us to keep our border styles DRY and control them from one place. Use these mixins and placeholders instead of writing your own CSS.
+
+```
+.your-selector {
+    // add the default border radius
+    @extend %base-radius;
+
+    // add a thin border on all sides
+    @include border(all, thin);
+
+    // add a thick border on the top and left sides with the highlight color
+    @include border(top left, thick, theme(highlight));
+}
+```
+
+There are also utility classes that allow you to quickly add a border to a container:
+
+```html_example
+<div class="border">
+    <p>I have borders on all sides!</p>
+</div>
+
+<div class="border border-round">
+    <p>I have rounded corners!</p>
+</div>
+
+<div class="border-top">
+    <p>I have borders on just the top!</p>
+</div>
+
+<div class="border-bottom border-right">
+    <p>I have borders on a couple sides. You can combine border classes to cover as many sides as you like.</p>
+</div>
+
+<div class="no-border">
+    <p>I have no borders! Even if I normally would.</p>
+</div>
+```
+
+*/
+/* =============================================================================
+// Global spacing
+// -> used to keep whitespace in the layout consistent
+// ========================================================================== */
+/* Margins
+// -------------------------------------------------------------------------- */
+.l-margin {
+  margin: 19px;
+  margin: 1.1875rem; }
+
+.l-margin--narrow {
+  margin: 13px !important;
+  margin: 0.8125rem !important; }
+
+.l-margin--wide {
+  margin: 42px !important;
+  margin: 2.625rem !important; }
+
+.l-margin-left {
+  margin-left: 19px !important;
+  margin-left: 1.1875rem !important; }
+
+.l-margin-left--narrow {
+  margin-left: 13px !important;
+  margin-left: 0.8125rem !important; }
+
+.l-margin-left--wide {
+  margin-left: 42px !important;
+  margin-left: 2.625rem !important; }
+
+.l-margin-right {
+  margin-right: 19px !important;
+  margin-right: 1.1875rem !important; }
+
+.l-margin-right--narrow {
+  margin-right: 13px !important;
+  margin-right: 0.8125rem !important; }
+
+.l-margin-right--wide {
+  margin-right: 42px !important;
+  margin-right: 2.625rem !important; }
+
+.l-margin-top {
+  margin-top: 19px !important;
+  margin-top: 1.1875rem !important; }
+
+.l-margin-top--narrow {
+  margin-top: 13px !important;
+  margin-top: 0.8125rem !important; }
+
+.l-margin-top--wide {
+  margin-top: 42px !important;
+  margin-top: 2.625rem !important; }
+
+.l-margin-bottom {
+  margin-bottom: 19px !important;
+  margin-bottom: 1.1875rem !important; }
+
+.l-margin-bottom--narrow {
+  margin-bottom: 13px !important;
+  margin-bottom: 0.8125rem !important; }
+
+.l-margin-bottom--wide {
+  margin-bottom: 42px !important;
+  margin-bottom: 2.625rem !important; }
+
+.l-no-margin {
+  margin: 0 !important;
+  margin: 0 !important; }
+
+.l-no-margin-left {
+  margin-left: 0 !important;
+  margin-left: 0 !important; }
+
+.l-no-margin-right {
+  margin-right: 0 !important;
+  margin-right: 0 !important; }
+
+.l-no-margin-top {
+  margin-top: 0 !important;
+  margin-top: 0 !important; }
+
+.l-no-margin-bottom {
+  margin-bottom: 0 !important;
+  margin-bottom: 0 !important; }
+
+/* Padding
+// -------------------------------------------------------------------------- */
+.l-padding {
+  padding: 19px !important;
+  padding: 1.1875rem !important; }
+
+.l-padding--narrow {
+  padding: 13px !important;
+  padding: 0.8125rem !important; }
+
+.l-padding--wide {
+  padding: 42px !important;
+  padding: 2.625rem !important; }
+
+.l-padding-left {
+  padding-left: 19px !important;
+  padding-left: 1.1875rem !important; }
+
+.l-padding-left--narrow {
+  padding-left: 13px !important;
+  padding-left: 0.8125rem !important; }
+
+.l-padding-left--wide {
+  padding-left: 42px !important;
+  padding-left: 2.625rem !important; }
+
+.l-padding-right {
+  padding-right: 19px !important;
+  padding-right: 1.1875rem !important; }
+
+.l-padding-right--narrow {
+  padding-right: 13px !important;
+  padding-right: 0.8125rem !important; }
+
+.l-padding-right--wide {
+  padding-right: 42px !important;
+  padding-right: 2.625rem !important; }
+
+.l-padding-top {
+  padding-top: 19px !important;
+  padding-top: 1.1875rem !important; }
+
+.l-padding-top--narrow {
+  padding-top: 13px !important;
+  padding-top: 0.8125rem !important; }
+
+.l-padding-top--wide {
+  padding-top: 42px !important;
+  padding-top: 2.625rem !important; }
+
+.l-padding-bottom {
+  padding-bottom: 19px !important;
+  padding-bottom: 1.1875rem !important; }
+
+.l-padding-bottom--narrow {
+  padding-bottom: 13px !important;
+  padding-bottom: 0.8125rem !important; }
+
+.l-padding-bottom--wide {
+  padding-bottom: 42px !important;
+  padding-bottom: 2.625rem !important; }
+
+.l-no-padding {
+  padding: 0 !important;
+  padding: 0 !important; }
+
+.l-no-padding-left {
+  padding-left: 0 !important;
+  padding-left: 0 !important; }
+
+.l-no-padding-right {
+  padding-right: 0 !important;
+  padding-right: 0 !important; }
+
+.l-no-padding-top {
+  padding-top: 0 !important;
+  padding-top: 0 !important; }
+
+.l-no-padding-bottom {
+  padding-bottom: 0 !important;
+  padding-bottom: 0 !important; }
+
+.border, .icon--border {
+  border: 1px solid #d6d7dd;
+  border-color: #d6d7dd ; }
+  .border.c-theme-reverse, .c-theme-reverse.icon--border, .c-theme-reverse .border, .c-theme-reverse .icon--border {
+    border-color: #476795 ; }
+  .border.c-theme-wash, .c-theme-wash.icon--border, .c-theme-wash .border, .c-theme-wash .icon--border {
+    border-color: #fff ; }
+
+@media (min-width: 30.01em) {
+  .border\@xsmall {
+    border: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border\@xsmall.c-theme-reverse, .c-theme-reverse .border\@xsmall {
+      border-color: #476795 ; }
+    .border\@xsmall.c-theme-wash, .c-theme-wash .border\@xsmall {
+      border-color: #fff ; } }
+
+@media (min-width: 42.01em) {
+  .border\@small {
+    border: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border\@small.c-theme-reverse, .c-theme-reverse .border\@small {
+      border-color: #476795 ; }
+    .border\@small.c-theme-wash, .c-theme-wash .border\@small {
+      border-color: #fff ; } }
+
+@media (min-width: 62.01em) {
+  .border\@medium {
+    border: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border\@medium.c-theme-reverse, .c-theme-reverse .border\@medium {
+      border-color: #476795 ; }
+    .border\@medium.c-theme-wash, .c-theme-wash .border\@medium {
+      border-color: #fff ; } }
+
+@media (min-width: 75.01em) {
+  .border\@large {
+    border: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border\@large.c-theme-reverse, .c-theme-reverse .border\@large {
+      border-color: #476795 ; }
+    .border\@large.c-theme-wash, .c-theme-wash .border\@large {
+      border-color: #fff ; } }
+
+@media (min-width: 100.01em) {
+  .border\@huge {
+    border: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border\@huge.c-theme-reverse, .c-theme-reverse .border\@huge {
+      border-color: #476795 ; }
+    .border\@huge.c-theme-wash, .c-theme-wash .border\@huge {
+      border-color: #fff ; } }
+
+.border-top {
+  border-top: 1px solid #d6d7dd;
+  border-color: #d6d7dd ; }
+  .border-top.c-theme-reverse, .c-theme-reverse .border-top {
+    border-color: #476795 ; }
+  .border-top.c-theme-wash, .c-theme-wash .border-top {
+    border-color: #fff ; }
+
+@media (min-width: 30.01em) {
+  .border-top\@xsmall {
+    border-top: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border-top\@xsmall.c-theme-reverse, .c-theme-reverse .border-top\@xsmall {
+      border-color: #476795 ; }
+    .border-top\@xsmall.c-theme-wash, .c-theme-wash .border-top\@xsmall {
+      border-color: #fff ; } }
+
+@media (min-width: 42.01em) {
+  .border-top\@small {
+    border-top: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border-top\@small.c-theme-reverse, .c-theme-reverse .border-top\@small {
+      border-color: #476795 ; }
+    .border-top\@small.c-theme-wash, .c-theme-wash .border-top\@small {
+      border-color: #fff ; } }
+
+@media (min-width: 62.01em) {
+  .border-top\@medium {
+    border-top: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border-top\@medium.c-theme-reverse, .c-theme-reverse .border-top\@medium {
+      border-color: #476795 ; }
+    .border-top\@medium.c-theme-wash, .c-theme-wash .border-top\@medium {
+      border-color: #fff ; } }
+
+@media (min-width: 75.01em) {
+  .border-top\@large {
+    border-top: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border-top\@large.c-theme-reverse, .c-theme-reverse .border-top\@large {
+      border-color: #476795 ; }
+    .border-top\@large.c-theme-wash, .c-theme-wash .border-top\@large {
+      border-color: #fff ; } }
+
+@media (min-width: 100.01em) {
+  .border-top\@huge {
+    border-top: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border-top\@huge.c-theme-reverse, .c-theme-reverse .border-top\@huge {
+      border-color: #476795 ; }
+    .border-top\@huge.c-theme-wash, .c-theme-wash .border-top\@huge {
+      border-color: #fff ; } }
+
+.border-right {
+  border-right: 1px solid #d6d7dd;
+  border-color: #d6d7dd ; }
+  .border-right.c-theme-reverse, .c-theme-reverse .border-right {
+    border-color: #476795 ; }
+  .border-right.c-theme-wash, .c-theme-wash .border-right {
+    border-color: #fff ; }
+
+@media (min-width: 30.01em) {
+  .border-right\@xsmall {
+    border-right: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border-right\@xsmall.c-theme-reverse, .c-theme-reverse .border-right\@xsmall {
+      border-color: #476795 ; }
+    .border-right\@xsmall.c-theme-wash, .c-theme-wash .border-right\@xsmall {
+      border-color: #fff ; } }
+
+@media (min-width: 42.01em) {
+  .border-right\@small {
+    border-right: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border-right\@small.c-theme-reverse, .c-theme-reverse .border-right\@small {
+      border-color: #476795 ; }
+    .border-right\@small.c-theme-wash, .c-theme-wash .border-right\@small {
+      border-color: #fff ; } }
+
+@media (min-width: 62.01em) {
+  .border-right\@medium {
+    border-right: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border-right\@medium.c-theme-reverse, .c-theme-reverse .border-right\@medium {
+      border-color: #476795 ; }
+    .border-right\@medium.c-theme-wash, .c-theme-wash .border-right\@medium {
+      border-color: #fff ; } }
+
+@media (min-width: 75.01em) {
+  .border-right\@large {
+    border-right: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border-right\@large.c-theme-reverse, .c-theme-reverse .border-right\@large {
+      border-color: #476795 ; }
+    .border-right\@large.c-theme-wash, .c-theme-wash .border-right\@large {
+      border-color: #fff ; } }
+
+@media (min-width: 100.01em) {
+  .border-right\@huge {
+    border-right: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border-right\@huge.c-theme-reverse, .c-theme-reverse .border-right\@huge {
+      border-color: #476795 ; }
+    .border-right\@huge.c-theme-wash, .c-theme-wash .border-right\@huge {
+      border-color: #fff ; } }
+
+.border-bottom {
+  border-bottom: 1px solid #d6d7dd;
+  border-color: #d6d7dd ; }
+  .border-bottom.c-theme-reverse, .c-theme-reverse .border-bottom {
+    border-color: #476795 ; }
+  .border-bottom.c-theme-wash, .c-theme-wash .border-bottom {
+    border-color: #fff ; }
+
+@media (min-width: 30.01em) {
+  .border-bottom\@xsmall {
+    border-bottom: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border-bottom\@xsmall.c-theme-reverse, .c-theme-reverse .border-bottom\@xsmall {
+      border-color: #476795 ; }
+    .border-bottom\@xsmall.c-theme-wash, .c-theme-wash .border-bottom\@xsmall {
+      border-color: #fff ; } }
+
+@media (min-width: 42.01em) {
+  .border-bottom\@small {
+    border-bottom: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border-bottom\@small.c-theme-reverse, .c-theme-reverse .border-bottom\@small {
+      border-color: #476795 ; }
+    .border-bottom\@small.c-theme-wash, .c-theme-wash .border-bottom\@small {
+      border-color: #fff ; } }
+
+@media (min-width: 62.01em) {
+  .border-bottom\@medium {
+    border-bottom: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border-bottom\@medium.c-theme-reverse, .c-theme-reverse .border-bottom\@medium {
+      border-color: #476795 ; }
+    .border-bottom\@medium.c-theme-wash, .c-theme-wash .border-bottom\@medium {
+      border-color: #fff ; } }
+
+@media (min-width: 75.01em) {
+  .border-bottom\@large {
+    border-bottom: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border-bottom\@large.c-theme-reverse, .c-theme-reverse .border-bottom\@large {
+      border-color: #476795 ; }
+    .border-bottom\@large.c-theme-wash, .c-theme-wash .border-bottom\@large {
+      border-color: #fff ; } }
+
+@media (min-width: 100.01em) {
+  .border-bottom\@huge {
+    border-bottom: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border-bottom\@huge.c-theme-reverse, .c-theme-reverse .border-bottom\@huge {
+      border-color: #476795 ; }
+    .border-bottom\@huge.c-theme-wash, .c-theme-wash .border-bottom\@huge {
+      border-color: #fff ; } }
+
+.border-left {
+  border-left: 1px solid #d6d7dd;
+  border-color: #d6d7dd ; }
+  .border-left.c-theme-reverse, .c-theme-reverse .border-left {
+    border-color: #476795 ; }
+  .border-left.c-theme-wash, .c-theme-wash .border-left {
+    border-color: #fff ; }
+
+@media (min-width: 30.01em) {
+  .border-left\@xsmall {
+    border-left: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border-left\@xsmall.c-theme-reverse, .c-theme-reverse .border-left\@xsmall {
+      border-color: #476795 ; }
+    .border-left\@xsmall.c-theme-wash, .c-theme-wash .border-left\@xsmall {
+      border-color: #fff ; } }
+
+@media (min-width: 42.01em) {
+  .border-left\@small {
+    border-left: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border-left\@small.c-theme-reverse, .c-theme-reverse .border-left\@small {
+      border-color: #476795 ; }
+    .border-left\@small.c-theme-wash, .c-theme-wash .border-left\@small {
+      border-color: #fff ; } }
+
+@media (min-width: 62.01em) {
+  .border-left\@medium {
+    border-left: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border-left\@medium.c-theme-reverse, .c-theme-reverse .border-left\@medium {
+      border-color: #476795 ; }
+    .border-left\@medium.c-theme-wash, .c-theme-wash .border-left\@medium {
+      border-color: #fff ; } }
+
+@media (min-width: 75.01em) {
+  .border-left\@large {
+    border-left: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border-left\@large.c-theme-reverse, .c-theme-reverse .border-left\@large {
+      border-color: #476795 ; }
+    .border-left\@large.c-theme-wash, .c-theme-wash .border-left\@large {
+      border-color: #fff ; } }
+
+@media (min-width: 100.01em) {
+  .border-left\@huge {
+    border-left: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .border-left\@huge.c-theme-reverse, .c-theme-reverse .border-left\@huge {
+      border-color: #476795 ; }
+    .border-left\@huge.c-theme-wash, .c-theme-wash .border-left\@huge {
+      border-color: #fff ; } }
+
+.no-border {
+  border: none !important; }
+
+@media (min-width: 30.01em) {
+  .no-border\@xsmall {
+    border: none !important; } }
+
+@media (min-width: 42.01em) {
+  .no-border\@small {
+    border: none !important; } }
+
+@media (min-width: 62.01em) {
+  .no-border\@medium {
+    border: none !important; } }
+
+@media (min-width: 75.01em) {
+  .no-border\@large {
+    border: none !important; } }
+
+@media (min-width: 100.01em) {
+  .no-border\@huge {
+    border: none !important; } }
+
+.no-border-top {
+  border-top: none !important; }
+
+@media (min-width: 30.01em) {
+  .no-border-top\@xsmall {
+    border-top: none !important; } }
+
+@media (min-width: 42.01em) {
+  .no-border-top\@small {
+    border-top: none !important; } }
+
+@media (min-width: 62.01em) {
+  .no-border-top\@medium {
+    border-top: none !important; } }
+
+@media (min-width: 75.01em) {
+  .no-border-top\@large {
+    border-top: none !important; } }
+
+@media (min-width: 100.01em) {
+  .no-border-top\@huge {
+    border-top: none !important; } }
+
+.no-border-right {
+  border-right: none !important; }
+
+@media (min-width: 30.01em) {
+  .no-border-right\@xsmall {
+    border-right: none !important; } }
+
+@media (min-width: 42.01em) {
+  .no-border-right\@small {
+    border-right: none !important; } }
+
+@media (min-width: 62.01em) {
+  .no-border-right\@medium {
+    border-right: none !important; } }
+
+@media (min-width: 75.01em) {
+  .no-border-right\@large {
+    border-right: none !important; } }
+
+@media (min-width: 100.01em) {
+  .no-border-right\@huge {
+    border-right: none !important; } }
+
+.no-border-bottom {
+  border-bottom: none !important; }
+
+@media (min-width: 30.01em) {
+  .no-border-bottom\@xsmall {
+    border-bottom: none !important; } }
+
+@media (min-width: 42.01em) {
+  .no-border-bottom\@small {
+    border-bottom: none !important; } }
+
+@media (min-width: 62.01em) {
+  .no-border-bottom\@medium {
+    border-bottom: none !important; } }
+
+@media (min-width: 75.01em) {
+  .no-border-bottom\@large {
+    border-bottom: none !important; } }
+
+@media (min-width: 100.01em) {
+  .no-border-bottom\@huge {
+    border-bottom: none !important; } }
+
+.no-border-left {
+  border-left: none !important; }
+
+@media (min-width: 30.01em) {
+  .no-border-left\@xsmall {
+    border-left: none !important; } }
+
+@media (min-width: 42.01em) {
+  .no-border-left\@small {
+    border-left: none !important; } }
+
+@media (min-width: 62.01em) {
+  .no-border-left\@medium {
+    border-left: none !important; } }
+
+@media (min-width: 75.01em) {
+  .no-border-left\@large {
+    border-left: none !important; } }
+
+@media (min-width: 100.01em) {
+  .no-border-left\@huge {
+    border-left: none !important; } }
+
+.border-round {
+  border-radius: 3px; }
+
+.border-circle, .icon--border {
+  border-radius: 50%; }
+
+.border-tick:after, .title:after, .border-tick::after, .title::after {
+  background-color: #d6d7dd ;
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1em;
+  width: 2em;
+  height: 3px; }
+  .border-tick:after.c-theme-reverse, .title:after.c-theme-reverse, .c-theme-reverse .border-tick:after, .c-theme-reverse .title:after, .border-tick::after.c-theme-reverse, .title::after.c-theme-reverse, .c-theme-reverse .border-tick::after, .c-theme-reverse .title::after {
+    background-color: #476795 ; }
+  .border-tick:after.c-theme-wash, .title:after.c-theme-wash, .c-theme-wash .border-tick:after, .c-theme-wash .title:after, .border-tick::after.c-theme-wash, .title::after.c-theme-wash, .c-theme-wash .border-tick::after, .c-theme-wash .title::after {
+    background-color: #fff ; }
+
+.border-tick--top:after, .border-tick--top::after {
+  top: 0;
+  bottom: auto; }
+
+.border-tick--bright:after, .title:after, .border-tick--bright::after, .title::after {
+  background-color: #418FBF ; }
+  .border-tick--bright:after.c-theme-reverse, .title:after.c-theme-reverse, .c-theme-reverse .border-tick--bright:after, .c-theme-reverse .title:after, .border-tick--bright::after.c-theme-reverse, .title::after.c-theme-reverse, .c-theme-reverse .border-tick--bright::after, .c-theme-reverse .title::after {
+    background-color: #e4b8ba ; }
+  .border-tick--bright:after.c-theme-wash, .title:after.c-theme-wash, .c-theme-wash .border-tick--bright:after, .c-theme-wash .title:after, .border-tick--bright::after.c-theme-wash, .title::after.c-theme-wash, .c-theme-wash .border-tick--bright::after, .c-theme-wash .title::after {
+    background-color: #fff ; }
+
+/* --- Modifiers ------------------------------------------------------------ */
+.border--mid {
+  border-width: 3px; }
+
+.border--thick {
+  border-width: 6px; }
+
+.border--bright {
+  border-color: #418FBF !important; }
+  .border--bright.c-theme-reverse, .c-theme-reverse .border--bright {
+    border-color: #418FBF !important; }
+  .border--bright.c-theme-wash, .c-theme-wash .border--bright {
+    border-color: #263750 !important; }
+
+/* /////////////////////////////////////////////////////////////////////////////
+// Layout utilities
+// -> global utility classes for basic layout
+///////////////////////////////////////////////////////////////////////////// */
+/* =============================================================================
+// Global positioning utilities
+// -> place an element relative to its parent
+// ========================================================================== */
+/* Utilities
+// -------------------------------------------------------------------------- */
+.l-centered {
+  text-align: center; }
+
+.l-float-right {
+  float: right; }
+
+.l-float-left {
+  float: left; }
+
+.l-position-left {
+  float: left; }
+  .flexbox .l-position-left {
+    float: none;
+    -ms-flex-item-align: start;
+        align-self: flex-start; }
+
+.l-position-right {
+  float: right; }
+  .flexbox .l-position-right {
+    float: none;
+    -ms-flex-item-align: end;
+        align-self: flex-end; }
+
+/* =============================================================================
+// Grid layout classes
+// ===========================================================================*/
+/*doc
+---
+title: Grids
+name: grids
+category: Layout
+---
+
+Grids
+
+```html_example
+<a href="#" class="button l-abs top right">Button @ top right</a>
+```
+
+*/
+/* Gutters
+// -------------------------------------------------------------------------- */
+/* Grid columns
+// -------------------------------------------------------------------------- */
+/* =============================================================================
+// Wrapper layout classes
+// ===========================================================================*/
+/*doc
+---
+title: Wrapper
+name: wrapper
+category: Layout
+---
+
+Wrappers
+
+```html_example
+<a href="#" class="button l-abs top right">Button @ top right</a>
+```
+
+*/
+/* Settings & mixins
+// -------------------------------------------------------------------------- */
+/* Utilities
+// -------------------------------------------------------------------------- */
+.l-wrapper {
+  max-width: 684px;
+  display: block;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 42px;
+  padding-right: 42px; }
+  .l-wrapper::after {
+    clear: both;
+    content: "";
+    display: table; }
+
+.l-wrapper--wide {
+  max-width: 1108px; }
+
+.l-wrapper-outcrop {
+  margin-left: -4em;
+  margin-right: -4em; }
+
+.l-wrapper-outcrop\@medium {
+  margin-left: 0;
+  margin-right: 0; }
+  @media (min-width: 62.01em) {
+    .l-wrapper-outcrop\@medium {
+      margin-left: -4em;
+      margin-right: -4em; } }
+
+.l-wrapper-outcrop\@large {
+  margin-left: 0;
+  margin-right: 0; }
+  @media (min-width: 75.01em) {
+    .l-wrapper-outcrop\@large {
+      margin-left: -4em;
+      margin-right: -4em; } }
+
+/* =============================================================================
+// Sidebar layout classes
+// ========================================================================== */
+/*doc
+---
+title: Sidebar
+name: sidebar
+category: Layout
+---
+
+Sidebars
+
+```html_example
+<a href="#" class="button l-abs top right">Button @ top right</a>
+```
+
+*/
+/* Layout Width
+// -------------------------------------------------------------------------- */
+@media (min-width: 62.01em) {
+  .l-has-sidebar {
+    padding-right: 250px; } }
+
+@media (min-width: 75.01em) {
+  .l-has-sidebar {
+    padding-left: 250px; } }
+
+@media (min-width: 62.01em) {
+  .l-sidebar-left {
+    float: left;
+    clear: left;
+    width: 250px;
+    margin-left: -250px;
+    margin-top: 19px;
+    margin-right: 0;
+    padding-right: 19px;
+    padding-left: 19px; } }
+
+@media (min-width: 62.01em) {
+  .l-sidebar-right {
+    float: right;
+    clear: right;
+    width: 250px;
+    margin-right: -250px;
+    margin-top: 19px;
+    margin-left: 0;
+    padding-left: 19px;
+    padding-right: 19px; } }
+
+/* =============================================================================
+// Visibility
+// -> hide and show things in various ways
+// ========================================================================== */
+.is-visually_hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  /*
+     * Extends the .visuallyhidden class to allow the element
+     * to be focusable when navigated to via the keyboard:
+     * https://www.drupal.org/node/897638
+     */ }
+  .is-visually_hidden.focusable {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    /*
+     * Extends the .visuallyhidden class to allow the element
+     * to be focusable when navigated to via the keyboard:
+     * https://www.drupal.org/node/897638
+     */ }
+    .is-visually_hidden.focusable:active, .is-visually_hidden.focusable:focus {
+      -webkit-clip-path: auto;
+              clip-path: auto;
+      height: auto;
+      margin: 0;
+      overflow: visible;
+      position: static;
+      width: auto; }
+
+.is-hidden {
+  display: none !important; }
+
+/* /////////////////////////////////////////////////////////////////////////////
+// Base styles
+// -> global element styles: lists, text, images, etc.
+///////////////////////////////////////////////////////////////////////////// */
+/* =============================================================================
+//  Global type styles
+// ========================================================================== */
+/*doc
+
+Inline text is mostly styled globally and doesn't change a whole lot from one context to another. If you mark it up with relevant tags it should take care of itself. But there are a few helper classes to define special styles:
+
+`.intro`: an italicized introduction to an article. Pretty common in Handshake's features and interviews.
+
+`.caption`: small, secondary text appearing in sidebars and, of course, captions.
+
+`.callout`: a featured passage. It isn't a header, per se, but it's the most important part of the article body. Used, for example, to highlight the question in _1 Question, 9 Experts_.
+
+`.lead`: the first paragraph of an article, decorated with a drop cap, etc. This is usually selected via `.content > p:first-child`, but if you need to imitate those styles in another context, use this class.
+
+*/
+/* Globals
+// -------------------------------------------------------------------------- */
+body {
+  font-family: "copernicus-book", "Georgia", "Cambria", "Times New Roman", "Times", serif;
+  line-height: 1.75; }
+
+p {
+  font-size: 13px;
+  font-size: 0.8125rem;
+  color: #464C56 ; }
+  p.c-theme-reverse, .c-theme-reverse p {
+    color: #d6d7dd ; }
+  p.c-theme-wash, .c-theme-wash p {
+    color: #263750 ; }
+
+a {
+  color: #418FBF ;
+  text-decoration: none; }
+  a.c-theme-reverse, .c-theme-reverse a {
+    color: #e4b8ba ; }
+  a.c-theme-wash, .c-theme-wash a {
+    color: #fff ; }
+
+strong, .t-strong {
+  font-family: "copernicus-bold", "Georgia", "Cambria", "Times New Roman", "Times", serif; }
+
+em, .t-em {
+  font-family: "copernicus-normal-italic", "Georgia", "Cambria", "Times New Roman", "Times", serif; }
+
+small, .t-small {
+  font-size: 10px;
+  font-size: 0.625rem;
+  color: #9FA0AE ; }
+  small.c-theme-reverse, .c-theme-reverse small, .t-small.c-theme-reverse, .c-theme-reverse .t-small {
+    color: #476795 ; }
+  small.c-theme-wash, .c-theme-wash small, .t-small.c-theme-wash, .c-theme-wash .t-small {
+    color: #263750 ; }
+
+figcaption, .t-caption {
+  font-size: 10px;
+  font-size: 0.625rem;
+  color: #464C56 ; }
+  figcaption.c-theme-reverse, .c-theme-reverse figcaption, .t-caption.c-theme-reverse, .c-theme-reverse .t-caption {
+    color: #d6d7dd ; }
+  figcaption.c-theme-wash, .c-theme-wash figcaption, .t-caption.c-theme-wash, .c-theme-wash .t-caption {
+    color: #263750 ; }
+
+address, .t-address {
+  font-size: 13px;
+  font-size: 0.8125rem;
+  color: #464C56 ; }
+  address.c-theme-reverse, .c-theme-reverse address, .t-address.c-theme-reverse, .c-theme-reverse .t-address {
+    color: #d6d7dd ; }
+  address.c-theme-wash, .c-theme-wash address, .t-address.c-theme-wash, .c-theme-wash .t-address {
+    color: #263750 ; }
+
+/* Utilities
+// -------------------------------------------------------------------------- */
+.t-lead {
+  font-size: 16px;
+  font-size: 1rem;
+  color: #263750 ; }
+  .t-lead.c-theme-reverse, .c-theme-reverse .t-lead {
+    color: #fff ; }
+  .t-lead.c-theme-wash, .c-theme-wash .t-lead {
+    color: #fff ; }
+
+/* =============================================================================
+//  Global heading styles
+// ========================================================================== */
+/*doc
+---
+title: Headings
+name: heading
+category: atoms
+---
+
+You can make individual headings and groups of headings with both the usual `h1 - h6` tags and also a few helper/microclasses to add special behaviors.
+
+#### Helper classes
+
+`h1 - h6` get global styles, which you can imitate with other tags (like `span`) if needed using these greek fraternity-esque helpers:
+
+```
+.alpha // looks like h1
+.beta // looks like h2
+.cappa // looks like h3
+.delta // looks like h4
+.epsilon // looks like h5
+.zeta // looks like h6
+```
+
+`.highlight` is useful for making a heading bright and obnoxious. It will adapt the highlight color of its context (ie blue, orange, whatever).
+
+##### Note on titles and subtitles
+
+It's important to remember that the `h1, h2, h3`, etc. elements are not just for looks: they have a specific purpose in HTML. They're essential to the DOM Tree and, to your browser, they represent the beginning of a new section of content. HTML5 has a variety of what are called "sectioning" elements and headings are the most basic of those (`section`, `article`, and `aside` being more sophisticated sectioning containers).
+
+What does this mean? Don't use an `h3` tag just because you wnat that size and style of type somewhere. Use it only to mark up a third-level section heading. If you just want the look of an `h3` in a non-sectioning context (like an article subtitle), use a generic element like `span` or `p` with the `.cappa` helper class.
+
+Many modules (like `media-box`, `profile`, etc.) define their own special heading submodules to achieve a certain style regardless of the actual markup. If you're working in one of those modules, reach for the submodules first.
+
+*/
+h1, .h-alpha, h2, .h-beta, h3, .h-cappa, h4, .h-delta, h5, .h-epsilon, h6, .h-zeta {
+  font-family: "aspira-thin", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  color: #263750 ;
+  position: relative;
+  line-height: 1.2; }
+  h1.c-theme-reverse, .c-theme-reverse.h-alpha, h2.c-theme-reverse, .c-theme-reverse.h-beta, h3.c-theme-reverse, .c-theme-reverse.h-cappa, h4.c-theme-reverse, .c-theme-reverse.h-delta, h5.c-theme-reverse, .c-theme-reverse.h-epsilon, h6.c-theme-reverse, .c-theme-reverse.h-zeta, .c-theme-reverse h1, .c-theme-reverse .h-alpha, .c-theme-reverse h2, .c-theme-reverse .h-beta, .c-theme-reverse h3, .c-theme-reverse .h-cappa, .c-theme-reverse h4, .c-theme-reverse .h-delta, .c-theme-reverse h5, .c-theme-reverse .h-epsilon, .c-theme-reverse h6, .c-theme-reverse .h-zeta {
+    color: #fff ; }
+  h1.c-theme-wash, .c-theme-wash.h-alpha, h2.c-theme-wash, .c-theme-wash.h-beta, h3.c-theme-wash, .c-theme-wash.h-cappa, h4.c-theme-wash, .c-theme-wash.h-delta, h5.c-theme-wash, .c-theme-wash.h-epsilon, h6.c-theme-wash, .c-theme-wash.h-zeta, .c-theme-wash h1, .c-theme-wash .h-alpha, .c-theme-wash h2, .c-theme-wash .h-beta, .c-theme-wash h3, .c-theme-wash .h-cappa, .c-theme-wash h4, .c-theme-wash .h-delta, .c-theme-wash h5, .c-theme-wash .h-epsilon, .c-theme-wash h6, .c-theme-wash .h-zeta {
+    color: #fff ; }
+  h1 a, .h-alpha a, h2 a, .h-beta a, h3 a, .h-cappa a, h4 a, .h-delta a, h5 a, .h-epsilon a, h6 a, .h-zeta a {
+    color: inherit; }
+  h1 strong, .h-alpha strong, h2 strong, .h-beta strong, h3 strong, .h-cappa strong, h4 strong, .h-delta strong, h5 strong, .h-epsilon strong, h6 strong, .h-zeta strong {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: normal;
+    color: #418FBF; }
+
+/* Globals
+// -------------------------------------------------------------------------- */
+h1, .h-alpha {
+  font-size: 42px;
+  font-size: 2.625rem; }
+
+h2, .h-beta {
+  font-size: 26px;
+  font-size: 1.625rem; }
+
+h3, .h-cappa {
+  font-size: 19px;
+  font-size: 1.1875rem; }
+
+h4, .h-delta {
+  font-size: 16px;
+  font-size: 1rem; }
+
+h5, .h-epsilon {
+  font-size: 13px;
+  font-size: 0.8125rem; }
+
+h6, .h-zeta {
+  font-size: 10px;
+  font-size: 0.625rem; }
+
+/* =============================================================================
+//  Global list styles
+// ========================================================================== */
+/* Globals
+// -------------------------------------------------------------------------- */
+li {
+  font-size: 13px;
+  font-size: 0.8125rem; }
+  li strong {
+    font-weight: bold; }
+
+li {
+  margin-bottom: 0.5em; }
+
+ol, ul {
+  margin-left: 1.5em;
+  /* bump to the right a little @ mobile sizes so the numbers/bullets don't run off */
+  padding-left: 0; }
+  @media (min-width: 42.01em) {
+    ol, ul {
+      margin-left: 0; } }
+
+/* Utilities
+// -------------------------------------------------------------------------- */
+.list-undecorated {
+  margin-left: 0;
+  padding-left: 0;
+  list-style: none; }
+
+.list-inline {
+  margin-left: 0;
+  padding-left: 0;
+  list-style: none; }
+  .list-inline .list-inline-item, .list-inline li, .list-inline dt, .list-inline dd {
+    display: inline-block;
+    margin-right: 1em; }
+    .list-inline .list-inline-item:last-child, .list-inline li:last-child, .list-inline dt:last-child, .list-inline dd:last-child {
+      margin-right: 0; }
+  .list-inline\@xsmall .list-inline-item, .list-inline\@xsmall li, .list-inline\@xsmall dt, .list-inline\@xsmall dd {
+    display: block;
+    margin-right: 0; }
+  @media (min-width: 30.01em) {
+    .list-inline\@xsmall .list-inline-item, .list-inline\@xsmall li, .list-inline\@xsmall dt, .list-inline\@xsmall dd {
+      display: inline-block;
+      margin-right: 1em; }
+      .list-inline\@xsmall .list-inline-item:last-child, .list-inline\@xsmall li:last-child, .list-inline\@xsmall dt:last-child, .list-inline\@xsmall dd:last-child {
+        margin-right: 0; } }
+  .list-inline\@small .list-inline-item, .list-inline\@small li, .list-inline\@small dt, .list-inline\@small dd {
+    display: block;
+    margin-right: 0; }
+  @media (min-width: 42.01em) {
+    .list-inline\@small .list-inline-item, .list-inline\@small li, .list-inline\@small dt, .list-inline\@small dd {
+      display: inline-block;
+      margin-right: 1em; }
+      .list-inline\@small .list-inline-item:last-child, .list-inline\@small li:last-child, .list-inline\@small dt:last-child, .list-inline\@small dd:last-child {
+        margin-right: 0; } }
+  .list-inline\@medium .list-inline-item, .list-inline\@medium li, .list-inline\@medium dt, .list-inline\@medium dd {
+    display: block;
+    margin-right: 0; }
+  @media (min-width: 62.01em) {
+    .list-inline\@medium .list-inline-item, .list-inline\@medium li, .list-inline\@medium dt, .list-inline\@medium dd {
+      display: inline-block;
+      margin-right: 1em; }
+      .list-inline\@medium .list-inline-item:last-child, .list-inline\@medium li:last-child, .list-inline\@medium dt:last-child, .list-inline\@medium dd:last-child {
+        margin-right: 0; } }
+  .list-inline\@large .list-inline-item, .list-inline\@large li, .list-inline\@large dt, .list-inline\@large dd {
+    display: block;
+    margin-right: 0; }
+  @media (min-width: 75.01em) {
+    .list-inline\@large .list-inline-item, .list-inline\@large li, .list-inline\@large dt, .list-inline\@large dd {
+      display: inline-block;
+      margin-right: 1em; }
+      .list-inline\@large .list-inline-item:last-child, .list-inline\@large li:last-child, .list-inline\@large dt:last-child, .list-inline\@large dd:last-child {
+        margin-right: 0; } }
+  .list-inline\@huge .list-inline-item, .list-inline\@huge li, .list-inline\@huge dt, .list-inline\@huge dd {
+    display: block;
+    margin-right: 0; }
+  @media (min-width: 100.01em) {
+    .list-inline\@huge .list-inline-item, .list-inline\@huge li, .list-inline\@huge dt, .list-inline\@huge dd {
+      display: inline-block;
+      margin-right: 1em; }
+      .list-inline\@huge .list-inline-item:last-child, .list-inline\@huge li:last-child, .list-inline\@huge dt:last-child, .list-inline\@huge dd:last-child {
+        margin-right: 0; } }
+
+.list-inline--has-borders .list-inline-item {
+  border-right: 1px solid #d6d7dd;
+  border-color: #d6d7dd ;
+  padding-right: 1em; }
+  .list-inline--has-borders .list-inline-item.c-theme-reverse, .c-theme-reverse .list-inline--has-borders .list-inline-item {
+    border-color: #476795 ; }
+  .list-inline--has-borders .list-inline-item.c-theme-wash, .c-theme-wash .list-inline--has-borders .list-inline-item {
+    border-color: #fff ; }
+  .list-inline--has-borders .list-inline-item:last-child {
+    padding-right: 0;
+    border: none; }
+
+.list-inline--vertically_centered .list-inline-item {
+  vertical-align: middle; }
+
+/* ==========================================================================
+//  Global media styles
+// ========================================================================== */
+audio,
+canvas,
+img,
+video {
+  vertical-align: middle;
+  max-width: 100%; }
+
+.img-tile {
+  border: 1px solid #d6d7dd;
+  border-color: #d6d7dd ;
+  border-radius: 1em; }
+  .img-tile.c-theme-reverse, .c-theme-reverse .img-tile {
+    border-color: #476795 ; }
+  .img-tile.c-theme-wash, .c-theme-wash .img-tile {
+    border-color: #fff ; }
+
+figure {
+  margin: 1.5em 0; }
+
+/* =============================================================================
+//  Base form styles
+// ========================================================================== */
+/*doc
+---
+title: Forms
+name: Form
+category: atoms
+---
+
+*/
+/* Base
+// -------------------------------------------------------------------------- */
+input, textarea, select {
+  padding: 0.5em 1em;
+  border-radius: 3px;
+  box-sizing: border-box;
+  box-shadow: none;
+  text-shadow: none; }
+  input:focus, textarea:focus, select:focus {
+    outline: 0;
+    outline: thin dotted \9;
+    /* IE6-9 */
+    box-shadow: none; }
+
+[type="checkbox"] {
+  width: 1em;
+  height: 1em; }
+
+textarea {
+  resize: vertical; }
+
+/* /////////////////////////////////////////////////////////////////////////////
+// Components
+// -> reusable, composable, self-contained interface elements
+///////////////////////////////////////////////////////////////////////////// */
+/* --- Atoms ---------------------------------------------------------------- */
+/* =============================================================================
+//  SVG styles
+// -> for icon sprites, vector graphics, etc.
+// ========================================================================== */
+/* Base
+// -------------------------------------------------------------------------- */
+.icon {
+  display: inline-block;
+  height: 1.4em;
+  width: 1.4em;
+  max-height: 100%;
+  max-width: 100%;
+  margin-top: -0.3em;
+  margin-right: 0.3em;
+  vertical-align: middle;
+  color: inherit;
+  fill: currentColor;
+  background-color: transparent; }
+  .icon svg {
+    margin: 0;
+    width: 100%;
+    max-height: 100%;
+    color: inherit;
+    fill: currentColor; }
+
+/* Modifiers
+// -------------------------------------------------------------------------- */
+/* --- positioning ---------------------------------------------------------- */
+.icon--margin-top {
+  margin-top: 0.4em; }
+
+.icon--margin-right {
+  margin-right: 0.4em; }
+
+.icon--margin-bottom {
+  margin-bottom: 0.4em; }
+
+.icon--margin-left {
+  margin-left: 0.4em; }
+
+/* --- borders -------------------------------------------------------------- */
+.icon--border {
+  padding: 0.6em;
+  border-color: inherit; }
+
+/* =============================================================================
+//  Title component
+// -> a main heading for content
+// ========================================================================== */
+/*doc
+---
+title: Title
+name: main_nav
+category: Atoms
+---
+
+*/
+/* Base
+// -------------------------------------------------------------------------- */
+.title {
+  font-family: "aspira-bold", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  display: block;
+  padding-bottom: 0.8em;
+  margin: 0 0 1.5em;
+  text-align: center;
+  letter-spacing: -0.02em; }
+
+/* Subcomponents
+// -------------------------------------------------------------------------- */
+.title-sub {
+  font-family: "copernicus-book", "Georgia", "Cambria", "Times New Roman", "Times", serif;
+  color: #464C56 ;
+  display: block;
+  margin: 0.2em 0.5em 0;
+  line-height: 1.6; }
+  .title-sub.c-theme-reverse, .c-theme-reverse .title-sub {
+    color: #d6d7dd ; }
+  .title-sub.c-theme-wash, .c-theme-wash .title-sub {
+    color: #263750 ; }
+  .title-sub strong {
+    font-family: "copernicus-bold", "Georgia", "Cambria", "Times New Roman", "Times", serif;
+    color: #464C56 ; }
+    .title-sub strong.c-theme-reverse, .c-theme-reverse .title-sub strong {
+      color: #d6d7dd ; }
+    .title-sub strong.c-theme-wash, .c-theme-wash .title-sub strong {
+      color: #263750 ; }
+
+.title-slug {
+  font-family: "aspira-bold", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  text-transform: uppercase;
+  color: #364f73; }
+
+/* =============================================================================
+//  Button module
+// ========================================================================== */
+/*doc
+---
+title: Buttons
+name: button
+category: Atoms
+---
+
+You can apply button styles to any element but `button` and `a` would be the winners on the semantics front.
+
+Buttons are available in a range of "obnoxiousness" and size.
+
+```html_example
+<!-- default button -->
+<a href="#" class="button">Default</a>
+
+<!-- obnoxious, attention-grabbing primary button -->
+<a href="#" class="button primary">Primary</a>
+
+<!-- laid back, self-effacing secondary button -->
+<a href="#" class="button secondary">Secondary</a>
+
+<!-- large button -->
+<a href="#" class="button small">Small</a>
+
+<!-- small button -->
+<a href="#" class="button large">Large</a>
+
+<!-- small primary button -->
+<a href="#" class="button primary small">Confused button</a>
+
+<!-- large secondary button -->
+<a href="#" class="button secondary large">Confused button</a>
+```
+
+There are a couple special buttons called `.pill` and `.text`. Pills are little round guys usually used in selection contexts, like filter menus. Text buttons are ashamed of their button heritage and try to hide themselves with transparent backgrounds.
+
+```html_example
+    <!-- pill button -->
+    <a href="#" class="button pill">I'm a pill button.</a>
+
+    <!-- text button -->
+    <a href="#" class="button text">I'm not a button, I swear.</a>
+```
+
+Some buttons have icons. Just tell your button that it's harboring an icon with the `.has-icon` modifier class:
+
+```html_example
+    <!-- button with icon -->
+    <a href="#" class="button has-icon">
+        <svg class="icon download" preserveAspectRatio="xMinYMin meet">
+          <use xlink:href="assets/icons/spritemap.svg#download")"></use>
+        </svg>
+        Whoa, is that an icon?
+    </a>
+```
+
+Finally, if you want your button to fill up the whole container it's living in, use `.full` and `.full.bleed`:
+
+```html_example
+    <!-- a "full" button is full-width relative to its container -->
+    <a class="button full" href="#">Full button</a>
+
+    <!-- a "full bleed" button goes all the way to the edge -->
+    <a class="button full bleed" href="#">Full bleed button</a>
+```
+
+### Button groups
+
+To make a group of buttons work together cooperatively (buttons are normally antisocial, like cats), use a `.button-group` container:
+
+```html_example
+    <ul class="button-group">
+        <li><a class="button" href="#">Button</a></li>
+        <li><a class="button" href="#">Button</a></li>
+        <li><a class="button" href="#">Button</a></li>
+    </ul>
+```
+*/
+/* Config/mixins
+// -------------------------------------------------------------------------- */
+/* Base
+// -------------------------------------------------------------------------- */
+.button {
+  font-family: "aspira-bold", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  font-size: 13px;
+  font-size: 0.8125rem;
+  display: inline-block;
+  position: relative;
+  padding: 1.4em 2.4em 1.2em;
+  -webkit-appearance: none;
+  border: none;
+  border-radius: 3px;
+  line-height: 1;
+  color: #fff;
+  background-color: #e4b8ba; }
+  .button:hover {
+    background-color: #f2ddde; }
+  .button:active {
+    background-color: #dda6a8; }
+  .button:focus {
+    outline: none; }
+  .button-group .button {
+    margin-right: 13px;
+    margin-right: 0.8125rem; }
+  .c-theme-wash .button {
+    color: #464C56;
+    background-color: #f5f5f6; }
+    .c-theme-wash .button:hover {
+      background-color: white; }
+    .c-theme-wash .button:active {
+      background-color: #e7e7eb; }
+  .c-theme-reverse .button {
+    color: #263750;
+    background-color: #fff; }
+    .c-theme-reverse .button:hover {
+      color: #364f73; }
+    .c-theme-reverse .button:active {
+      background-color: #f5f5f6; }
+
+/* Modifiers
+// -------------------------------------------------------------------------- */
+.button--secondary {
+  border: 1px solid #d6d7dd;
+  border-color: #d6d7dd ;
+  color: #418FBF ;
+  background-color: #f5f5f6 ;
+  border-radius: 3px; }
+  .button--secondary.c-theme-reverse, .c-theme-reverse .button--secondary {
+    border-color: #476795 ; }
+  .button--secondary.c-theme-wash, .c-theme-wash .button--secondary {
+    border-color: #fff ; }
+  .button--secondary.c-theme-reverse, .c-theme-reverse .button--secondary {
+    color: #418FBF ; }
+  .button--secondary.c-theme-wash, .c-theme-wash .button--secondary {
+    color: #263750 ; }
+  .button--secondary.c-theme-reverse, .c-theme-reverse .button--secondary {
+    background-color: #05070b ; }
+  .button--secondary.c-theme-wash, .c-theme-wash .button--secondary {
+    background-color: #e4b8ba ; }
+  .button--secondary:hover {
+    background-color: white ; }
+    .button--secondary:hover.c-theme-reverse, .c-theme-reverse .button--secondary:hover {
+      background-color: #161f2d ; }
+    .button--secondary:hover.c-theme-wash, .c-theme-wash .button--secondary:hover {
+      background-color: #f2ddde ; }
+  .button--secondary:active {
+    background-color: white ; }
+    .button--secondary:active.c-theme-reverse, .c-theme-reverse .button--secondary:active {
+      background-color: #161f2d ; }
+    .button--secondary:active.c-theme-wash, .c-theme-wash .button--secondary:active {
+      background-color: #f2ddde ; }
+
+.button--small {
+  font-size: 10px;
+  font-size: 0.625rem;
+  padding: 0.8em 1.6em; }
+
+.button--large {
+  font-size: 13px;
+  font-size: 0.8125rem; }
+
+.button--text {
+  color: #464C56 ;
+  padding: 0;
+  background-color: transparent !important; }
+  .button--text.c-theme-reverse, .c-theme-reverse .button--text {
+    color: #d6d7dd ; }
+  .button--text.c-theme-wash, .c-theme-wash .button--text {
+    color: #263750 ; }
+  .button--text:hover, .button--text:active {
+    color: #476795 ;
+    background-color: transparent !important; }
+    .button--text:hover.c-theme-reverse, .c-theme-reverse .button--text:hover, .button--text:active.c-theme-reverse, .c-theme-reverse .button--text:active {
+      color: white ; }
+    .button--text:hover.c-theme-wash, .c-theme-wash .button--text:hover, .button--text:active.c-theme-wash, .c-theme-wash .button--text:active {
+      color: white ; }
+
+/* Submodules
+// -------------------------------------------------------------------------- */
+.button-group-item:first-child:not(.button--text) {
+  border-top-left-radius: 3px; }
+
+.button-group-item:last-child:not(.button--text) {
+  border-bottom-right-radius: 3px; }
+
+.button-label {
+  font-size: 10px;
+  font-size: 0.625rem;
+  font-family: "aspira-thin", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  padding: 0.8em 1.6em; }
+
+.button-box {
+  border: 1px solid #d6d7dd;
+  border-color: #d6d7dd ;
+  display: inline-block;
+  border-radius: 3px;
+  font-size: 0;
+  background-color: transparent !important; }
+  .button-box.c-theme-reverse, .c-theme-reverse .button-box {
+    border-color: #476795 ; }
+  .button-box.c-theme-wash, .c-theme-wash .button-box {
+    border-color: #fff ; }
+  .button-box .button-label {
+    border-right: 1px solid #d6d7dd;
+    border-color: #d6d7dd ; }
+    .button-box .button-label.c-theme-reverse, .c-theme-reverse .button-box .button-label {
+      border-color: #476795 ; }
+    .button-box .button-label.c-theme-wash, .c-theme-wash .button-box .button-label {
+      border-color: #fff ; }
+    .button-box .button-label:last-child {
+      border-right-width: 0; }
+  .button-box .button {
+    border-radius: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0; }
+    .button-box .button:last-child {
+      border-right-width: 0; }
+
+/* --- Molecules ------------------------------------------------------------ */
+/* =============================================================================
+//  Main nav component
+// ========================================================================== */
+/*doc
+---
+title: Main Nav
+name: main_nav
+category: Molecules
+---
+
+*/
+/* Base
+// -------------------------------------------------------------------------- */
+.main_nav {
+  margin-left: 0;
+  padding-left: 0;
+  list-style: none; }
+  .main_nav .list-inline-item, .main_nav li, .main_nav dt, .main_nav dd {
+    display: inline-block;
+    margin-right: 1em; }
+    .main_nav .list-inline-item:last-child, .main_nav li:last-child, .main_nav dt:last-child, .main_nav dd:last-child {
+      margin-right: 0; }
+  .main_nav > ul {
+    margin: 0; }
+
+/* Subcomponents
+// -------------------------------------------------------------------------- */
+/* =============================================================================
+//  Cover component
+// -> a main heading for content
+// ========================================================================== */
+/*doc
+---
+title: Cover
+name: cover
+category: Molecules
+---
+
+*/
+/* Base
+// -------------------------------------------------------------------------- */
+.cover {
+  display: block;
+  height: 500px;
+  height: 60vh;
+  background-size: cover;
+  text-align: center; }
+  .flexbox .cover {
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    box-align: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    -o-align-items: center;
+    align-items: center;
+    -ms-flex-align: center; }
+
+/* Subcomponents
+// -------------------------------------------------------------------------- */
+/* --- Organisms ------------------------------------------------------------ */
+/* =============================================================================
+//  Main header component
+// ========================================================================== */
+/*doc
+---
+title: Main Header
+name: main_header
+category: Organisms
+---
+
+*/
+/* Base
+// -------------------------------------------------------------------------- */
+.main_header {
+  border-bottom: 1px solid #d6d7dd;
+  border-color: #d6d7dd ;
+  display: block;
+  vertical-align: middle;
+  position: absolute;
+  padding: 1em 0;
+  top: 0;
+  left: 42px;
+  right: 42px;
+  z-index: 2; }
+  .main_header.c-theme-reverse, .c-theme-reverse .main_header {
+    border-color: #476795 ; }
+  .main_header.c-theme-wash, .c-theme-wash .main_header {
+    border-color: #fff ; }
+  .flexbox .main_header {
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    box-align: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    -o-align-items: center;
+    align-items: center;
+    -ms-flex-align: center;
+    -webkit-box-pack: justify;
+    box-pack: justify;
+    -moz-justify-content: space-between;
+    -ms-justify-content: space-between;
+    -o-justify-content: space-between;
+    justify-content: space-between;
+    -ms-flex-pack: justify; }
+
+/* Subcomponents
+// -------------------------------------------------------------------------- */
+.main_header-item {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0; }
+
+.main_header-item--left {
+  float: left; }
+  .flexbox .main_header-item--left {
+    display: block;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1; }
+
+.main_header-item--right {
+  float: right;
+  margin-bottom: -1em; }
+  .flexbox .main_header-item--right {
+    display: block; }
+
+/* =============================================================================
+//  Panel component
+// -> a large section, approximately screen-sized
+// -> main idea is to add whitespace around content
+// ========================================================================== */
+/*doc
+---
+title: Panel
+name: panel
+category: Organisms
+---
+
+*/
+/* Base
+// -------------------------------------------------------------------------- */
+.panel {
+  border-top: 1px solid #d6d7dd;
+  border-color: #d6d7dd ;
+  padding: 42px 0;
+  display: block; }
+  .panel.c-theme-reverse, .c-theme-reverse .panel {
+    border-color: #476795 ; }
+  .panel.c-theme-wash, .c-theme-wash .panel {
+    border-color: #fff ; }
+
+/* Modifiers
+// -------------------------------------------------------------------------- */
+.panel--centered {
+  text-align: center; }
+  .flexbox .panel--centered {
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    box-align: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    -o-align-items: center;
+    align-items: center;
+    -ms-flex-align: center; }
+
+/* Subcomponents
+// -------------------------------------------------------------------------- */
+/* ==========================================================================
+// Gallery module
+// -> arrange child elements into even rows and columns
+// ========================================================================== */
+/*doc
+---
+title: Gallery
+name: gallery
+category: organisms
+---
+
+A gallery is a grid of small bits of content- usually listings or thumbnails. It breaks the content into even columns and rows. It is responsive, so the column number will change based on screen width, and column width is fluid (percentage-based).
+
+```html_example
+    <ul class='gallery'>
+        <li class="gallery-item">
+            Wow, I'm in a gallery.
+        </li>
+        <li class="gallery-item">
+            Me too.
+        </li>
+    </ul>
+```
+
+Typically, you'll mark up a gallery as an unordered list, but it will work with most block-level elements (like <nav> or <div>). Just give the container a "gallery" class and the children a "gallery-item" class.
+
+There are three (column) size variations: small, medium, and large. Medium is default, so that's the size you get with just "gallery." This only affects overall column width: a "large" gallery will have fewer columns at any given screen size than a "small" gallery. Note any size variation can be used at any screen size. The best choice mainly depends on the type of content you're displaying. If there's lots of text, it might look squished in a "small" gallery, whereas tiny icons might get blown up really huge in a "large" gallery.
+
+```html_example
+    <!-- small gallery, with narrow columns -->
+    <ul class="gallery small"></ul>
+
+    <!-- default ("medium") gallery -->
+    <ul class="gallery"></ul>
+
+    <!-- large gallery with wide columns -->
+    <ul class="gallery large"></ul>
+```
+
+*/
+/* Base
+// ---------------------------------------------------------------------------*/
+.gallery, .gallery--small, .gallery--large {
+  margin-left: 0;
+  padding-left: 0;
+  list-style: none;
+  margin-top: 19px;
+  margin-top: 1.1875rem;
+  display: block;
+  -webkit-box-orient: horizontal;
+  box-orient: horizontal;
+  -webkit-box-direction: normal;
+  box-direction: normal;
+  -moz-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-direction: row;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  box-lines: multiple;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: stretch;
+  box-align: stretch;
+  -moz-align-items: stretch;
+  -ms-align-items: stretch;
+  -o-align-items: stretch;
+  -ms-grid-row-align: stretch;
+      align-items: stretch;
+  -ms-flex-align: stretch;
+  position: relative;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  font-size: 0; }
+  @media (min-width: 42.01em) {
+    .gallery, .gallery--small, .gallery--large {
+      display: -webkit-box;
+      display: -moz-box;
+      display: box;
+      display: -moz-flex;
+      display: -ms-flexbox;
+      display: flex;
+      margin-right: -19px; } }
+
+/* Modifiers
+// ---------------------------------------------------------------------------*/
+@media (min-width: 30.01em) {
+  .gallery--small {
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-right: -19px; } }
+
+@media (min-width: 42.01em) {
+  .gallery--large {
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-right: -19px; } }
+
+.gallery--centered {
+  -webkit-box-align: center;
+  box-align: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  -ms-grid-row-align: center;
+      align-items: center;
+  -ms-flex-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center; }
+
+/* Submodules
+// ---------------------------------------------------------------------------*/
+.gallery-item {
+  display: block;
+  margin-bottom: 0;
+  padding-bottom: 19px;
+  font-size: 16px; }
+  @media (min-width: 42.01em) {
+    .gallery-item {
+      display: inline-block;
+      width: 50%;
+      padding-right: 19px; }
+      .flexbox .gallery-item {
+        display: block;
+        -webkit-box-flex: 0;
+        box-flex: 0;
+        -moz-flex: 0 0 50%;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        width: auto;
+        min-width: 1px; } }
+  @media (min-width: 62.01em) {
+    .gallery-item {
+      display: inline-block;
+      width: 33.33333%;
+      padding-right: 19px; }
+      .flexbox .gallery-item {
+        display: block;
+        -webkit-box-flex: 0;
+        box-flex: 0;
+        -moz-flex: 0 0 33.33333%;
+        -ms-flex: 0 0 33.33333%;
+        flex: 0 0 33.33333%;
+        width: auto;
+        min-width: 1px; } }
+  @media (min-width: 30.01em) {
+    .gallery--small .gallery-item {
+      display: inline-block;
+      width: 25%;
+      padding-right: 19px; }
+      .flexbox .gallery--small .gallery-item {
+        display: block;
+        -webkit-box-flex: 0;
+        box-flex: 0;
+        -moz-flex: 0 0 25%;
+        -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        width: auto;
+        min-width: 1px; } }
+  @media (min-width: 62.01em) {
+    .gallery--small .gallery-item {
+      display: inline-block;
+      width: 20%;
+      padding-right: 19px; }
+      .flexbox .gallery--small .gallery-item {
+        display: block;
+        -webkit-box-flex: 0;
+        box-flex: 0;
+        -moz-flex: 0 0 20%;
+        -ms-flex: 0 0 20%;
+        flex: 0 0 20%;
+        width: auto;
+        min-width: 1px; } }
+  @media (min-width: 42.01em) {
+    .gallery--large .gallery-item {
+      display: inline-block;
+      width: 50%;
+      padding-right: 19px; }
+      .flexbox .gallery--large .gallery-item {
+        display: block;
+        -webkit-box-flex: 0;
+        box-flex: 0;
+        -moz-flex: 0 0 50%;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        width: auto;
+        min-width: 1px; } }
+
+/* /////////////////////////////////////////////////////////////////////////////
+// Styles of Shame
+// -> put quick and dirty hacks here, then clean up & organize later
+///////////////////////////////////////////////////////////////////////////// */

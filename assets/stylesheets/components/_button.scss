@@ -1,0 +1,222 @@
+/* =============================================================================
+//  Button module
+// ========================================================================== */
+
+/*doc
+---
+title: Buttons
+name: button
+category: Atoms
+---
+
+You can apply button styles to any element but `button` and `a` would be the winners on the semantics front.
+
+Buttons are available in a range of "obnoxiousness" and size.
+
+```html_example
+<!-- default button -->
+<a href="#" class="button">Default</a>
+
+<!-- obnoxious, attention-grabbing primary button -->
+<a href="#" class="button primary">Primary</a>
+
+<!-- laid back, self-effacing secondary button -->
+<a href="#" class="button secondary">Secondary</a>
+
+<!-- large button -->
+<a href="#" class="button small">Small</a>
+
+<!-- small button -->
+<a href="#" class="button large">Large</a>
+
+<!-- small primary button -->
+<a href="#" class="button primary small">Confused button</a>
+
+<!-- large secondary button -->
+<a href="#" class="button secondary large">Confused button</a>
+```
+
+There are a couple special buttons called `.pill` and `.text`. Pills are little round guys usually used in selection contexts, like filter menus. Text buttons are ashamed of their button heritage and try to hide themselves with transparent backgrounds.
+
+```html_example
+    <!-- pill button -->
+    <a href="#" class="button pill">I'm a pill button.</a>
+
+    <!-- text button -->
+    <a href="#" class="button text">I'm not a button, I swear.</a>
+```
+
+Some buttons have icons. Just tell your button that it's harboring an icon with the `.has-icon` modifier class:
+
+```html_example
+    <!-- button with icon -->
+    <a href="#" class="button has-icon">
+        <svg class="icon download" preserveAspectRatio="xMinYMin meet">
+          <use xlink:href="assets/icons/spritemap.svg#download")"></use>
+        </svg>
+        Whoa, is that an icon?
+    </a>
+```
+
+Finally, if you want your button to fill up the whole container it's living in, use `.full` and `.full.bleed`:
+
+```html_example
+    <!-- a "full" button is full-width relative to its container -->
+    <a class="button full" href="#">Full button</a>
+
+    <!-- a "full bleed" button goes all the way to the edge -->
+    <a class="button full bleed" href="#">Full bleed button</a>
+```
+
+### Button groups
+
+To make a group of buttons work together cooperatively (buttons are normally antisocial, like cats), use a `.button-group` container:
+
+```html_example
+    <ul class="button-group">
+        <li><a class="button" href="#">Button</a></li>
+        <li><a class="button" href="#">Button</a></li>
+        <li><a class="button" href="#">Button</a></li>
+    </ul>
+```
+*/
+
+
+@import "../core/all";
+
+/* Config/mixins
+// -------------------------------------------------------------------------- */
+$button-radius: $base-radius;
+
+$button-padding: (
+    'top': 1.4em,
+    'sides': 2.4em,
+    'bottom': 1.2em,
+);
+
+/* Base
+// -------------------------------------------------------------------------- */
+
+.button {
+    @include font-display('bold');
+    @include base-transition;
+    @include font-scale(2);
+    display: inline-block;
+    position: relative;
+    padding: map-get($button-padding, 'top') map-get($button-padding, 'sides') map-get($button-padding, 'bottom');
+    -webkit-appearance: none; // reset style for <button> element
+    border: none; // reset style for <button> element
+    border-radius: $button-radius;
+    line-height: 1;
+    // text-transform: uppercase;
+    color: theme('text' 'primary', 'wash');
+    background-color: theme('bg', 'wash');
+
+    &:hover { background-color: lighten(theme(bg, 'wash'), 10); }
+    &:active { background-color: darken(theme('bg', 'wash'), 5); }
+    &:focus { outline: none; }
+
+    // add a margin when inside a button group container
+    .button-group & { @include rem(margin-right, $l-margin--narrow); }
+
+    // color themes
+    .c-theme-wash & {
+        color: theme('text' 'secondary');
+        background-color: theme('well');
+
+        &:hover { background-color: lighten(theme('well'), 10); }
+        &:active { background-color: darken(theme('well'), 5); }
+    }
+
+    .c-theme-reverse & {
+        color: theme('bg', 'reverse');
+        background-color: theme('bg', 'default');
+
+        &:hover { color: lighten(theme('bg', 'reverse'), 10); }
+        &:active { background-color: theme('well'); }
+    }
+}
+
+/* Modifiers
+// -------------------------------------------------------------------------- */
+
+// --- types -------------------------------------------------------------------
+// -> variations that indicate relative importance.
+
+// an introvert button; not making a big deal of it, just here if you need me.
+.button--secondary {
+  @include border;
+  @include color('accent');
+  @include color('well', 'background-color');
+  border-radius: $button-radius;
+    &:hover {
+      @include color('well', 'background-color', 10);
+    }
+    &:active {
+      @include color('well', 'background-color', 10);
+    }
+}
+
+// --- sizes -------------------------------------------------------------------
+// -> default size is "medium." add these classes to go bigger or smaller.
+
+.button--small {
+    @include font-scale(1);
+    padding: 0.8em 1.6em;
+}
+
+.button--large { @include font-scale(2); }
+
+// --- special variations ------------------------------------------------------
+// -> buttons of a strange and amazing nature
+
+
+// a "hidden," text-only button. doesn't look like a button but behaves like one in every other way.
+.button--text {
+    @include color('text' 'secondary');
+    padding: 0;
+    background-color: transparent !important;
+
+    &:hover, &:active {
+        @include color('text' 'primary', $shade: 20);
+        background-color: transparent !important;
+    }
+}
+
+/* Submodules
+// -------------------------------------------------------------------------- */
+    // children of .button-group
+    // -> modify rounded corners
+    .button-group-item {
+        &:first-child:not(.button--text) { border-top-left-radius: $button-radius; }
+        &:last-child:not(.button--text) { border-bottom-right-radius: $button-radius; }
+    }
+
+.button-label {
+  @include font-scale(1);
+  @include font-display;
+  padding: 0.8em 1.6em;
+}
+
+.button-box {
+  @include border;
+  display: inline-block;
+  border-radius: $button-radius;
+  font-size: 0;
+  background-color: transparent !important;
+    .button-label {
+      @include border(right);
+      &:last-child {
+        border-right-width: 0;
+      }
+    }
+    .button {
+      border-radius: 0;
+      border-top-width: 0;
+      border-bottom-width: 0;
+      border-left-width: 0;
+      &:last-child {
+        border-right-width: 0;
+      }
+    }
+}
