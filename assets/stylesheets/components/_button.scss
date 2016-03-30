@@ -86,13 +86,10 @@ To make a group of buttons work together cooperatively (buttons are normally ant
 
 /* Config/mixins
 // -------------------------------------------------------------------------- */
-$button-radius: $base-radius;
-
-$button-padding: (
-    'top': 1.4em,
-    'sides': 2.4em,
-    'bottom': 1.2em,
-);
+$button-radius: em($base-radius);
+$button-line_height: 1.1;
+$button-padding: 1.4em 2.4em 1.2em;
+$button-padding--small: 0.8em 1.6em 0.7em;
 
 /* Base
 // -------------------------------------------------------------------------- */
@@ -107,7 +104,7 @@ $button-padding: (
     -webkit-appearance: none; // reset style for <button> element
     border: none; // reset style for <button> element
     border-radius: $button-radius;
-    line-height: 1;
+    line-height: $button-line_height;
     // text-transform: uppercase;
     color: theme('text' 'primary', 'wash');
     background-color: theme('bg', 'wash');
@@ -187,15 +184,17 @@ $button-padding: (
 // -------------------------------------------------------------------------- */
     // children of .button-group
     // -> modify rounded corners
-    .button-group-item {
-        &:first-child:not(.button--text) { border-top-left-radius: $button-radius; }
-        &:last-child:not(.button--text) { border-bottom-right-radius: $button-radius; }
-    }
+    // .button-group-item {
+    //     &:first-child:not(.button--text) { border-top-left-radius: $button-radius; }
+    //     &:last-child:not(.button--text) { border-bottom-right-radius: $button-radius; }
+    // }
 
 .button-label {
-  @include font-scale(1);
-  @include font-display;
-  padding: 0.8em 1.6em;
+  @include font-scale(2);
+  @include font-display('regular');
+  padding: $button-padding;
+  display: inline-block;
+  line-height: $button-line_height;
 }
 
 .button-box {
@@ -204,19 +203,19 @@ $button-padding: (
   border-radius: $button-radius;
   font-size: 0;
   background-color: transparent !important;
-    .button-label {
-      @include border(right);
-      &:last-child {
-        border-right-width: 0;
-      }
-    }
     .button {
+      display: block;
       border-radius: 0;
       border-top-width: 0;
       border-bottom-width: 0;
       border-left-width: 0;
-      &:last-child {
-        border-right-width: 0;
-      }
+
+      // @include media(">xsmall") {
+      //       display: inline-block;
+      //       border-top: none;
+      //       border-left-width: border-w('thin');
+
+            &:first-child { border-left-width: 0; }
+        }
     }
 }
