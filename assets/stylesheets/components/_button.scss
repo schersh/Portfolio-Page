@@ -210,10 +210,10 @@ $button-padding--small: 0.8em 1.6em 0.7em;
       border-bottom-width: 0;
       border-left-width: 0;
 
-      // @include media(">xsmall") {
-      //       display: inline-block;
-      //       border-top: none;
-      //       border-left-width: border-w('thin');
+      @include media(">xsmall") {
+            display: inline-block;
+            border-top: none;
+            border-left-width: border-w('thin');
 
             &:first-child { border-left-width: 0; }
         }
