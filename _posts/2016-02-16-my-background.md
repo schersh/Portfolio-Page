@@ -3,7 +3,7 @@ layout: default
 title: "My Background"
 permalink: /#my-background
 date: 2016-02-16
-weight: 20
+weight: 30
 assets:
   - name: Resume
     type: pdf
