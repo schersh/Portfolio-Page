@@ -7,7 +7,7 @@ weight: 20
 assets:
   - name: Resume
     type: pdf
-    link: /assets/images/Resume_July16.pdf
+    link: /assets/images/Resume_SHersh.pdf
 ---
 
 As an art history student I discovered the power of visual storytelling, while my experience as an educator taught me that information is only as valuable as it is accessible. I value contributing towards scalable digital products with an eye towards user-centered design and community engagement.
