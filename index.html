@@ -69,18 +69,7 @@ layout: default
 {% endfor %}
 
 <!-- mailing list form here? use some logic to see if there's a mailing list in _config? -->
-<section class="panel c-theme-reverse">
-  <div class="l-wrapper">
-    <h1 class="h-beta title">Want to work together? Drop me a line.</h1>
-    <form action="//formspree.io/schersh@gmail.com"
-      method="POST">
-    <input type="text" placeholder="Name" name="name">
-    <input type="email" placeholder="Email" name="_replyto">
-    <input type="text" placeholder="Organization" name="name">
-    <input type="submit" value="Send" class="l-margin-top">
-</form>
-  </div>
-</section>
+
 <!-- team members grid -->
 {% if site.data.members %}
 <section class="panel c-well">
